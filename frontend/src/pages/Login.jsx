@@ -1,15 +1,14 @@
 function Login() {
   return (
     <div>
-      <h1>Login</h1>
-
-      <input placeholder="Email" />
+      <img src="/logo.png" alt="Rescate7" />
+      <h3>Bienvenido!!!</h3>
+      <h4>Ingresa tus datos para iniciar sesión</h4>
+      <input placeholder="Número de Celular" />
       <br />
-
-      <input placeholder="Password" type="password" />
+      <input placeholder="Contraseña" type="password" />
       <br />
-
-      <button>Ingresar</button>
+      <button>Iniciar Sesión</button>
     </div>
   )
 }
