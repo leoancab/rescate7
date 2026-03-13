@@ -1,16 +1,25 @@
-const express = require("express");
-const cors = require("cors");
+const express = require("express")
+const cors = require("cors")
+require("dotenv").config()
 
-const testRoutes = require("./routes/testRoutes");
+const pool = require("./config/db")
+const authMiddleware = require("./middleware/authMiddleware")
+const app = express()
+const authRoutes = require("./routes/authRoutes")
 
-const app = express();
+app.use(cors())
+app.use(express.json())
+app.use("/auth", authRoutes)
 
-app.use(cors());
-app.use(express.json());
-app.use("/api", testRoutes);
+app.listen(process.env.PORT, () => {
+  console.log("Servidor corriendo en puerto " + process.env.PORT)
+})
 
-const PORT = 3000;
+app.get("/profile", authMiddleware, (req, res) => {
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
-});
+  res.json({
+    message: "Ruta protegida",
+    user: req.user
+  })
+
+})
