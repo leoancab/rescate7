@@ -1,4 +1,5 @@
 const pool = require("../config/db")
+const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const { hashPassword, comparePassword } = require("../utils/hash")
 
@@ -49,6 +50,7 @@ exports.login = async (req, res) => {
       token
     })
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error: error.message })
   }
 
