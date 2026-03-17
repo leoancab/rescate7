@@ -1,51 +1,52 @@
 import { Link } from "react-router-dom"
-
+import "../App.css"
 function Home() {
   return (
-    <div>
-
-      {/* idioma arriba izquierda */}
-      <div>
-        Español - Ecuador
+    <div className="home">
+      <div className="encabezado">
+        <div className="idioma">
+          Español - Ecuador
+        </div>
+        <div className="logo">
+          <img
+            src="/logo.png"
+            alt="Rescate7"
+            className="imglogo"
+          />
+        </div>
       </div>
 
-      {/* logo arriba derecha */}
-      <img
-        src="/logo.png"
-        alt="Rescate7"
-        class="titulo"
-      />
-      <h1 class="titulo">
-        Plan de Rescate y
-        <br />
-        Renovación de la Fe
-      </h1>
-      <div class="contenedor">
+      <div className="titulo">
+        <h1>
+          Plan de Rescate y Renovación de la Fe
+        </h1>
+      </div>
+      <div className="contenedor">
         <Link to="/tour">
-          <button className="bg-blue-500 text-white px-8 py-3 rounded-full mb-4">
-            Tour
+          <button className="botonesHome btTour">
+            <b>Tour</b>
           </button>
         </Link>
         <Link to="/login">
-          <button className="bg-white border px-8 py-3 rounded-full">
-            Iniciar Sesión
+          <button className="botonesHome btLogin">
+            <b>Iniciar Sesión</b>
           </button>
         </Link>
       </div>
-      <div class="contenedorlinks">
-        <img class="links" src="/youtube.png" />
-        <img class="links" src="facebook.png" />
-        <img class="links" src="instagram.png" />
-        <img class="links" src="tiktok.png" />
+
+      <div className="contenedorlinks">
+        <img className="links" src="/youtube.png" />
+        <img className="links" src="/facebook.png" />
+        <img className="links" src="/instagram.png" />
+        <img className="links" src="/tiktok.png" />
       </div>
 
-      <footer className="absolute bottom-4 text-sm">
-        Virtualweb del Ecuador S.A. <br />
-        Todos los Derechos Reservados
-      </footer>
-
+      <div className="homefoot">
+        <p>Virtualweb del Ecuador S.A.
+          <br/>
+          Todos los Derechos Reservados</p>
+      </div>
     </div>
   )
 }
-
 export default Home

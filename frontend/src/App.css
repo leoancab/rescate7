@@ -1,27 +1,40 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.home {
+  height: 100vh;
+  background-image: url('/fondohome.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 30vh;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.links {
+  height: 40px;
+  width: 40px;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.contenedorlinks {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  height: 10vh;
+  align-items: center;
 }
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +52,51 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.encabezado {
+  display: flex;
+  width: 100%;
+  height: 20vh;
+}
+
+.idioma {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-end-start-radius: 20%;
+}
+
+.titulo {
+  height: 30vh;
+  text-align: right;
+  margin: 30px;
+}
+
+.homefoot {
+  text-align: center;
+  height: 10vh;
+}
+
+.botonesHome {
+  height: 75px;
+  width: 300px;
+  border-radius: 20px;
+}
+
+.btTour {
+  background-color: #2D7CF3;
+  color: white;
+}
+
+.btLogin {
+  background-color: white;
+  color: #2D7CF3;
 }
