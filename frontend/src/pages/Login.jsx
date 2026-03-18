@@ -14,11 +14,29 @@ function Login() {
         <h4>Ingresa tus datos para iniciar sesión</h4>
       </div>
       <div className="loginputs">
-        <input className="inputsLogIn" placeholder="Número de Celular" />
-        <input className="inputsLogIn" placeholder="Contraseña" type="password" />
+        <div className="contenedorinput">
+          <input placeholder="Número de Celular" type="number" />
+          <img src="/numlogin.png" />
+        </div>
+        <div className="contenedorinput">
+          <input placeholder="Contraseña" type="password" />
+          <img src="/passwordlogin.png" />
+        </div>
       </div>
       <div className="contenedoriniciarsesion">
-        <button className="btiniciarsesion">Iniciar Sesión</button>
+        <button>Iniciar Sesión</button>
+      </div>
+      <div className="contenedorolvidarcontra">
+        <span>Has olvidado tu contraseña?</span>
+      </div>
+      <hr />
+      <div className="contenedorregistro">
+        <button>Registrarme</button>
+      </div>
+      <div className="homefoot">
+        <p>Virtualweb del Ecuador S.A.
+          <br />
+          Todos los Derechos Reservados</p>
       </div>
     </div>
   )

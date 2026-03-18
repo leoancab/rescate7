@@ -127,18 +127,28 @@
   align-items: center;
 }
 
-.inputsLogIn {
-  background-color: white;
-  height: 50px;
-  width: 300px;
-  border-radius: 10px;
-  border: none;
+.contenedorinput {
+  position: relative;
 }
 
-.btiniciarsesion {
-  background-color: #2D7CF3;
-  color: white;
-  width: 300px;
+.contenedorinput input {
+  background-color: white;
+  height: 50px;
+  width: 350px;
+  border-radius: 10px;
+  border: none;
+  color: #072A60;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.contenedorinput img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
 }
 
 .contenedoriniciarsesion {
@@ -146,4 +156,37 @@
   align-items: center;
   justify-content: center;
   display: flex;
+}
+
+.contenedoriniciarsesion button {
+  background-color: #2D7CF3;
+  color: white;
+  width: 350px;
+  font-size: larger;
+}
+
+.contenedorolvidarcontra {
+  height: 5vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+hr {
+  width: 350px;
+}
+
+.contenedorregistro {
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.contenedorregistro button {
+  background-color: #45BD4A;
+  color: white;
+  width: 300px;
+  border-radius: 30px;
+  height: 50px;
 }
