@@ -11,7 +11,6 @@ function Home() {
           <img
             src="/logo.png"
             alt="Rescate7"
-            className="imglogo"
           />
         </div>
       </div>
@@ -43,7 +42,7 @@ function Home() {
 
       <div className="homefoot">
         <p>Virtualweb del Ecuador S.A.
-          <br/>
+          <br />
           Todos los Derechos Reservados</p>
       </div>
     </div>

@@ -8,52 +8,6 @@
   flex-direction: column;
 }
 
-.contenedor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  height: 30vh;
-}
-
-.links {
-  height: 40px;
-  width: 40px;
-}
-
-.contenedorlinks {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  height: 10vh;
-  align-items: center;
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 .encabezado {
   display: flex;
   width: 100%;
@@ -80,9 +34,13 @@
   margin: 30px;
 }
 
-.homefoot {
-  text-align: center;
-  height: 10vh;
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 30vh;
 }
 
 .botonesHome {
@@ -99,4 +57,93 @@
 .btLogin {
   background-color: white;
   color: #2D7CF3;
+}
+
+.contenedorlinks {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  height: 10vh;
+  align-items: center;
+}
+
+.links {
+  height: 40px;
+  width: 40px;
+}
+
+.homefoot {
+  text-align: center;
+  height: 10vh;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.login {
+  background-image: url('/fondologin.png');
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.contenedorlogoLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+
+.logoLogIn {
+  border-radius: 50%;
+  height: 75%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.bienvenido {
+  height: 10vh;
+  text-align: center;
+}
+
+.loginputs {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 20vh;
+  align-items: center;
+}
+
+.inputsLogIn {
+  background-color: white;
+  height: 50px;
+  width: 300px;
+  border-radius: 10px;
+  border: none;
+}
+
+.btiniciarsesion {
+  background-color: #2D7CF3;
+  color: white;
+  width: 300px;
+}
+
+.contenedoriniciarsesion {
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
