@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../App.css"
 function Login() {
   return (
@@ -10,8 +11,9 @@ function Login() {
         />
       </div>
       <div className="bienvenido">
-        <h3>BIENVENIDO!!!</h3>
-        <h4>Ingresa tus datos para iniciar sesión</h4>
+        BIENVENIDO!!!
+        <br />
+        Ingresa tus datos para iniciar sesión
       </div>
       <div className="loginputs">
         <div className="contenedorinput">
@@ -31,7 +33,9 @@ function Login() {
       </div>
       <hr />
       <div className="contenedorregistro">
-        <button>Registrarme</button>
+        <Link to={"/signin"}>
+          <button>Registrarme</button>
+        </Link>
       </div>
       <div className="homefoot">
         <p>Virtualweb del Ecuador S.A.

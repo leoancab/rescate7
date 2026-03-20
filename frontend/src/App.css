@@ -115,6 +115,9 @@
 
 .bienvenido {
   height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -189,4 +192,20 @@ hr {
   width: 300px;
   border-radius: 30px;
   height: 50px;
+}
+
+.signininputs {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vh;
+  align-items: center;
+}
+
+.terminos {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
