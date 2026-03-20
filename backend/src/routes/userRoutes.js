@@ -8,5 +8,7 @@ router.get("/", authMiddleware, userController.getUsers)
 router.get("/:id", authMiddleware, userController.getUser)
 router.get("/:id", authMiddleware, userController.updateUser)
 router.delete("/:id", authMiddleware, userController.deleteUser)
+router.put("/:id/group", userController.assignGroup);
+router.put("/:id/remove-group", userController.removeGroup);
 
 module.exports = router

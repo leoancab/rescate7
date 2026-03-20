@@ -97,6 +97,7 @@ exports.deleteGrupo = async (req, res) => {
     }
 };
 
+//Obtener usuarios de un grupo
 exports.getUserByGroup = async (req, res) => {
     try {
         const { id } = req.params;
