@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import Login from "./pages/Login"
 import Home from "./pages/Home"
-import Tour from "./pages/Tour"
 import Signin from "./pages/Signin"
+import Tour from "./pages/Tour"
 
 function App() {
   return (
@@ -10,9 +12,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/tour" element={<Tour />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/tour" element={<Tour />} />
       </Routes>
+      <ToastContainer limit={1} />
     </BrowserRouter>
   )
 }

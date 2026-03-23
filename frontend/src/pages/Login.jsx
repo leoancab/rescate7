@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom"
+import BackButton from "../components/BackButton"
+import { toast } from "react-toastify"
+import { useState } from "react"
 import "../App.css"
 function Login() {
+  const [numero, setNumero] = useState("")
+  const [password, setPassword] = useState("")
+  const handleLogin = () => {
+    if (!numero || !password) {
+      toast.dismiss()
+      toast.error("Debes completar todos los campos", {
+        toastId: "login-empty"
+      })
+      return
+    }
+  }
   return (
     <div className="login">
+      <BackButton />
       <div className="contenedorlogoLogin">
         <img
           src="/logo.png"
@@ -17,16 +32,16 @@ function Login() {
       </div>
       <div className="loginputs">
         <div className="contenedorinput">
-          <input placeholder="Número de Celular" type="number" />
+          <input value={numero} onChange={(e) => setNumero(e.target.value)} placeholder="Número de Celular" type="number" />
           <img src="/numlogin.png" />
         </div>
         <div className="contenedorinput">
-          <input placeholder="Contraseña" type="password" />
+          <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" type="password" />
           <img src="/passwordlogin.png" />
         </div>
       </div>
       <div className="contenedoriniciarsesion">
-        <button>Iniciar Sesión</button>
+        <button onClick={handleLogin}>Iniciar Sesión</button>
       </div>
       <div className="contenedorolvidarcontra">
         <span>Has olvidado tu contraseña?</span>

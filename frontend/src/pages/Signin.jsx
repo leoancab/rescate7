@@ -1,6 +1,8 @@
+import BackButton from "../components/BackButton"
 function Signin() {
     return (
         <div className="login">
+            <BackButton />
             <div className="contenedorlogoLogin">
                 <img
                     src="/logo.png"
@@ -32,8 +34,16 @@ function Signin() {
                 </div>
             </div>
             <div className="terminos">
-                <input type="checkbox"/>
+                <input type="checkbox" />
                 Acepto los Terminos y Condiciones de Uso
+            </div>
+            <div className="contenedorregistro">
+                <button>Registrarme</button>
+            </div>
+            <div className="homefoot">
+                <p>Virtualweb del Ecuador S.A.
+                    <br />
+                    Todos los Derechos Reservados</p>
             </div>
         </div>
     )

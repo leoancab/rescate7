@@ -4,17 +4,18 @@ const jwt = require("jsonwebtoken")
 const { hashPassword, comparePassword } = require("../utils/hash")
 
 exports.register = async (req, res) => {
+  try {
+    const { nom_usuario, nro_celular, password, id_tipo_usuario } = req.body
+    const hashed = await hashPassword(password)
+    await pool.query(
+      "INSERT INTO usuarios (nom_usuario, nro_celular, password, id_tipo_usuario) VALUES (?, ?, ?, ?)",
 
-  const { nombre, telefono, password, role_id } = req.body
-  const hashed = await hashPassword(password)
-  const jwt = require("jsonwebtoken")
-
-  await pool.query(
-    "INSERT INTO usuarios (nombre, telefono, password, role_id) VALUES (?, ?, ?, ?)",
-    [nombre, telefono, hashed, role_id]
-  )
-
-  res.json({ message: "Usuario creado" })
+      [nom_usuario, nro_celular, hashed, id_tipo_usuario]
+    )
+    res.json({ message: "Usuario creado" })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
 exports.login = async (req, res) => {

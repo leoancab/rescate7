@@ -209,3 +209,57 @@ hr {
   justify-content: center;
   align-items: center;
 }
+
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100vh;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.tour1 {
+  height: 100vh;
+  background-image: url('/tour1fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tour2 {
+  height: 100vh;
+  background-image: url('/tour2fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tour3 {
+  height: 100vh;
+  background-image: url('/tour3fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tour4 {
+  height: 100vh;
+  background-image: url('/tour4fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.back-btn{
+  background: none;
+  height: 5vh;
+}

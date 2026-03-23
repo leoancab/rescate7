@@ -1,7 +1,7 @@
-const db = require("../db");
+const db = require("../config/db");
 
 // Crear grupo
-exports.createGrupo = async (req, res) => {
+exports.createGroup = async (req, res) => {
     try {
         const { nom_grupo, id_iglesia, id_admin } = req.body;
         const [result] = await db.query(
@@ -18,7 +18,7 @@ exports.createGrupo = async (req, res) => {
 };
 
 // Obtener todos los grupos
-exports.getGrupos = async (req, res) => {
+exports.getGroups = async (req, res) => {
     try {
         const [rows] = await db.query(`
       SELECT 
@@ -37,7 +37,7 @@ exports.getGrupos = async (req, res) => {
 };
 
 // Obtener grupo por ID
-exports.getGrupoById = async (req, res) => {
+exports.getGroup = async (req, res) => {
     try {
         const { id } = req.params;
         const [rows] = await db.query(`
@@ -63,7 +63,7 @@ exports.getGrupoById = async (req, res) => {
 };
 
 // Actualizar grupo
-exports.updateGrupo = async (req, res) => {
+exports.updateGroup = async (req, res) => {
     try {
         const { id } = req.params;
         const { nom_grupo, id_admin } = req.body;
@@ -81,7 +81,7 @@ exports.updateGrupo = async (req, res) => {
 };
 
 // Eliminar grupo
-exports.deleteGrupo = async (req, res) => {
+exports.deleteGroup = async (req, res) => {
     try {
         const { id } = req.params;
         const [result] = await db.query(
