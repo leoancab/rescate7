@@ -1,11 +1,15 @@
+import BackButton from "../components/BackButton"
 function Tour1() {
     return (
         <div className="tour1">
-            <img
-                src="/logo.png"
-                alt="Rescate7"
-                class="titulo"
-            />
+            <BackButton />
+            <div>
+                <img
+                    src="/logo.png"
+                    alt="Rescate7"
+                    class="titulo"
+                />
+            </div>
             <h3>Que es Rescate7?</h3>
             <p className="tourtexto">
                 Es un aplicativo web cuyo objetivo<br />
