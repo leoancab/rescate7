@@ -82,6 +82,7 @@ CREATE TABLE visitas_misioneras (
 
 INSERT INTO tipo_usuario (tipo, descripcion) VALUES
 ('admin', 'Administrador del sistema'),
-('lider', 'Líder de grupo'),
+('liderIglesia','Líder de Iglesia'),
+('liderGrupo', 'Líder de grupo'),
 ('miembro', 'Miembro regular'),
 ('prospecto', 'Persona aún no es miembro');
