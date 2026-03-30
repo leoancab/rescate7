@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import BackButton from "../components/BackButton"
 import { toast } from "react-toastify"
 import { useState } from "react"
@@ -6,13 +6,42 @@ import "../App.css"
 function Login() {
   const [numero, setNumero] = useState("")
   const [password, setPassword] = useState("")
-  const handleLogin = () => {
+  const navigate = useNavigate()
+
+  const handleLogin = async () => {
     if (!numero || !password) {
       toast.dismiss()
       toast.error("Debes completar todos los campos", {
         toastId: "login-empty"
       })
       return
+    }
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ numero, password })
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        // Guardar token (opcional)
+        localStorage.setItem("token", data.token)
+
+        toast.success("Bienvenido 👌")
+
+        // Redirigir al dashboard
+        navigate("/dashboard")
+      } else {
+        toast.error(data.message || "Credenciales incorrectas")
+      }
+
+    } catch (error) {
+      console.error(error)
+      toast.error("Error al conectar con el servidor")
     }
   }
   return (

@@ -5,6 +5,7 @@ import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Signin from "./pages/Signin"
 import Tour from "./pages/Tour"
+import Dashboard from "./pages/Dashboard"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/tour" element={<Tour />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <ToastContainer limit={1} />
     </BrowserRouter>
