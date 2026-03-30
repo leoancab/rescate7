@@ -22,7 +22,10 @@ function Login() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ numero, password })
+        body: JSON.stringify({
+          nro_celular: numero,
+          password
+        })
       })
 
       const data = await response.json()

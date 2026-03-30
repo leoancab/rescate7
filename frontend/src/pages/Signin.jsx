@@ -17,7 +17,8 @@ function Signin() {
         return password
     }
     const handleRegister = async () => {
-        const password = generarPassword()
+        const password = "123456"
+        console.log(password)
         if (!celular || !nombre) {
             toast.dismiss()
             toast.error("Debes completar todos los campos", {
@@ -25,6 +26,8 @@ function Signin() {
             })
         } else {
             try {
+                const role_id = 1
+                /*
                 const response = await fetch("https://leoancab.app.n8n.cloud/webhook-test/rescate7", {
                     method: "POST",
                     headers: {
@@ -36,9 +39,22 @@ function Signin() {
                         password
                     })
                 })
+                    */
+                const response = await fetch("http://localhost:3000/auth/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nom_usuario: nombre,
+                        nro_celular: celular,
+                        password,
+                        id_tipo_usuario: role_id
+                    })
+                })
                 const data = await response.json()
                 console.log("Respuesta:", data)
-                alert("Usuario registrado. Revisa tu WhatsApp o correo.")
+                alert("Clave temporal enviada. Revisa tu WhatsApp.")
             } catch (error) {
                 console.error("Error:", error)
                 alert("Error al registrar")
