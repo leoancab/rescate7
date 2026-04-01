@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { data, Link, useNavigate } from "react-router-dom"
 import BackButton from "../components/BackButton"
 import { toast } from "react-toastify"
 import { useState } from "react"
@@ -27,24 +27,16 @@ function Login() {
           password
         })
       })
-
       const data = await response.json()
-
-      if (data.success) {
-        // Guardar token (opcional)
-        localStorage.setItem("token", data.token)
-
-        toast.success("Bienvenido 👌")
-
-        // Redirigir al dashboard
-        navigate("/dashboard")
-      } else {
-        toast.error(data.message || "Credenciales incorrectas")
+      if (!response.ok) {
+        throw new Error(data.message || "Error en login")
       }
-
+      localStorage.setItem("token", data.token)
+      toast.success("Bienvenido 👌")
+      navigate("/dashboard")
     } catch (error) {
       console.error(error)
-      toast.error("Error al conectar con el servidor")
+      toast.error(error.message || "Error al conectar con el servidor")
     }
   }
   return (
@@ -64,7 +56,7 @@ function Login() {
       </div>
       <div className="loginputs">
         <div className="contenedorinput">
-          <input value={numero} onChange={(e) => setNumero(e.target.value)} placeholder="Número de Celular" type="number" />
+          <input value={numero} onChange={(e) => setNumero(e.target.value)} placeholder="Número de Celular" type="tel" />
           <img src="/numlogin.png" />
         </div>
         <div className="contenedorinput">

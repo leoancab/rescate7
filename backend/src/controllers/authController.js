@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
     }
     const valid = await comparePassword(password, user.password)
     if (!valid) {
-      return res.status(401).json({ message: "Password incorrecto" })
+      return res.status(401).json({ success: false, message: "Password incorrecto" })
     }
     const token = jwt.sign(
       { id: user.id, role: user.id_tipo_usuario },

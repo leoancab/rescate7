@@ -259,7 +259,85 @@ hr {
   background-repeat: no-repeat;
 }
 
-.back-btn{
+.back-btn {
   background: none;
   height: 5vh;
+}
+
+.dashboardfondo {
+  height: 100vh;
+  background: linear-gradient(to bottom, #072A60, #5181CA);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardhead {
+  height: 15vh;
+  display: flex;
+}
+
+.logohead {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opchead {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.profiledashboard {
+  height: 25vh;
+}
+
+.gestiondashboard {
+  height: 30vh;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: none;
+  border: none;
+  color: white;
+  font-size: 12px;
+}
+
+.nav-item:hover {
+  color: #000;
 }
