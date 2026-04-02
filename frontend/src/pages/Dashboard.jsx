@@ -1,5 +1,7 @@
 import BottomNav from "./BottomNav";
 function Dashboard() {
+  const { user } = useAuth()
+  console.log(user)
   return (
     <div className="dashboardfondo">
       <div className="dashboardhead">
@@ -25,12 +27,15 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="profiledashboard">
+      <div className="contenedor1dashboard">
         <div>
 
         </div>
       </div>
-      <div className="gestiondashboard">
+      <div className="contenedor2dashboard">
+
+      </div>
+      <div className="contenedor3dashboard">
 
       </div>
       <BottomNav />
