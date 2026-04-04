@@ -1,7 +1,7 @@
 import BottomNav from "./BottomNav";
 function Dashboard() {
-  const { user } = useAuth()
-  console.log(user)
+  //const { user } = useAuth()
+  //console.log(user)
   return (
     <div className="dashboardfondo">
       <div className="dashboardhead">

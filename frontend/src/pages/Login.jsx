@@ -32,6 +32,7 @@ function Login() {
         throw new Error(data.message || "Error en login")
       }
       localStorage.setItem("token", data.token)
+      localStorage.setItem("user", JSON.stringify(data.user))
       toast.success("Bienvenido 👌")
       navigate("/dashboard")
     } catch (error) {
