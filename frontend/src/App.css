@@ -342,3 +342,59 @@ hr {
 .nav-item:hover {
   color: #000;
 }
+
+.testfondo {
+  height: 100vh;
+  background-image: url('/testfondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedortest {
+  height: 10vh;
+  text-align: center;
+  align-content: center;
+  font-size: larger;
+  font-weight: bolder;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.textotest {
+  height: 20vh;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  align-content: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.botonesTest {
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.botonesTest button {
+  height: 60px;
+  width: 300px;
+}
+
+.botontest1 {
+  background-color: #2D7CF3;
+}
+
+.botontest2 {
+  background-color: #500652;
+}
+
+.botontest3 {
+  background-color: #000;
+}

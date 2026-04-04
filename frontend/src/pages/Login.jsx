@@ -34,7 +34,7 @@ function Login() {
       localStorage.setItem("token", data.token)
       localStorage.setItem("user", JSON.stringify(data.user))
       toast.success("Bienvenido 👌")
-      navigate("/dashboard")
+      navigate("/test")
     } catch (error) {
       console.error(error)
       toast.error(error.message || "Error al conectar con el servidor")
