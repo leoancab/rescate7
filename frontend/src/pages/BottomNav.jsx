@@ -15,10 +15,10 @@ export default function BottomNav() {
             <Link className="nav-item">
                 <Heart size={24} />
             </Link>
-            <Link className="nav-item">
+            <Link to="/profile" className="nav-item">
                 <User size={24} />
             </Link>
-            <Link className="nav-item">
+            <Link to="/mi-iglesia" className="nav-item">
                 <Church size={24} />
             </Link>
         </div>

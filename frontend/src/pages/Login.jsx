@@ -3,6 +3,8 @@ import BackButton from "../components/BackButton"
 import { toast } from "react-toastify"
 import { useState } from "react"
 import "../App.css"
+import IntlTelInput from "intl-tel-input/reactWithUtils";
+import "intl-tel-input/styles";
 function Login() {
   const [numero, setNumero] = useState("")
   const [password, setPassword] = useState("")
@@ -57,7 +59,19 @@ function Login() {
       </div>
       <div className="loginputs">
         <div className="contenedorinput">
-          <input value={numero} onChange={(e) => setNumero(e.target.value)} placeholder="Número de Celular" type="tel" />
+          <IntlTelInput
+            initialCountry="ec"
+            preferredCountries={["ec", "us", "es"]}
+            value={numero}
+            onChangeNumber={(number) => setNumero(number)}
+            onChangeValidity={(isValid) => {
+              console.log("¿Número válido?", isValid);
+            }}
+            inputProps={{
+              placeholder: "Número de Celular",
+              className: "inputTelefono"
+            }}
+          />
           <img src="/numlogin.png" />
         </div>
         <div className="contenedorinput">

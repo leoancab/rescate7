@@ -1,4 +1,6 @@
 import BottomNav from "./BottomNav";
+import { Webcam, SquarePen, CalendarDays } from "lucide-react";
+
 function Dashboard() {
   //const { user } = useAuth()
   //console.log(user)
@@ -14,15 +16,15 @@ function Dashboard() {
         </div>
         <div className="opchead">
           <div className="item">
-            <img src="/visitasweb.png" />
+            <Webcam size={48} />
             Visitas
           </div>
           <div className="item">
-            <img src="/blog.png" />
+            <SquarePen size={48} />
             Blog
           </div>
           <div className="item">
-            <img src="/agenda.png" />
+            <CalendarDays size={48} />
             Agenda
           </div>
         </div>

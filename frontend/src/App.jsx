@@ -7,6 +7,9 @@ import Signin from "./pages/Signin"
 import Tour from "./pages/Tour"
 import Dashboard from "./pages/Dashboard"
 import Test from "./pages/Test"
+import Encuesta from "./pages/Encuesta"
+import Iglesia from "./pages/Iglesia"
+import Profile from "./pages/Profile"
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
         <Route path="/tour" element={<Tour />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/encuesta" element={<Encuesta />} />
+        <Route path="/mi-iglesia" element={<Iglesia />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <ToastContainer limit={1} />
     </BrowserRouter>

@@ -95,9 +95,12 @@
 
 .login {
   background-image: url('/fondologin.png');
-  min-height: 100vh;
+  height: 100vh;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
 }
 
 .contenedorlogoLogin {
@@ -397,4 +400,83 @@ hr {
 
 .botontest3 {
   background-color: #000;
+}
+
+.iti__search-input {
+  background-color: white;
+  color: black;
+}
+
+.iti__country {
+  color: black;
+  background-color: white;
+}
+
+.encuestafondo {
+  height: 100vh;
+  background: linear-gradient(to bottom, #072A60, #5181CA);
+  display: flex;
+  flex-direction: column;
+}
+
+.numpreguntaencuesta {
+  height: 5vh;
+  text-align: center;
+  align-content: center;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.preguntaencuesta {
+  height: 10vh;
+  text-align: center;
+  align-content: center;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.opcionesencuesta {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.opcionesencuesta button {
+  height: 15%;
+  width: 70%;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.puntaje {
+  height: 100vh;
+  background-image: url('/fondopuntaje.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.iglesia {
+  height: 100vh;
+  background-image: url('/iglesiafondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.iglesiahead {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: larger;
 }

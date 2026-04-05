@@ -18,7 +18,7 @@ function Test() {
                 Ahora puedes contestar un TEST de preguntas sencillas que te ayudarán a descubrirlo de manera muy reservada y confidencial...
             </div>
             <div className="botonesTest">
-                <button className="botontest1">
+                <button className="botontest1" onClick={() => navigate("/encuesta")}>
                     Iniciar TEST Espiritual
                 </button>
                 <button className="botontest2">
