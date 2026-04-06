@@ -10,6 +10,11 @@ import Test from "./pages/Test"
 import Encuesta from "./pages/Encuesta"
 import Iglesia from "./pages/Iglesia"
 import Profile from "./pages/Profile"
+import Management from "./pages/Management"
+import RequestVisit from "./pages/RequestVisit"
+import PrayerRequest from "./pages/PrayerRequest"
+import ScheduleVisit from "./pages/ScheduleVisit"
+import Testimony from "./pages/Testimony"
 
 function App() {
   return (
@@ -24,6 +29,11 @@ function App() {
         <Route path="/encuesta" element={<Encuesta />} />
         <Route path="/mi-iglesia" element={<Iglesia />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/management" element={<Management />} />
+        <Route path="/management/request-visit" element={<RequestVisit />} />
+        <Route path="/management/prayer-request" element={<PrayerRequest />} />
+        <Route path="/management/schedule-visit" element={<ScheduleVisit />} />
+        <Route path="/management/testimony" element={<Testimony />} />
       </Routes>
       <ToastContainer limit={1} />
     </BrowserRouter>

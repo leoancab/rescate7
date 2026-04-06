@@ -1,18 +1,17 @@
 import BottomNav from "./BottomNav";
 import { Webcam, SquarePen, CalendarDays } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function parseJwt(token) {
   try {
-    const base64Payload = token.split('.')[1];          // extrae la segunda parte
-    const payload = atob(base64Payload);               // decodifica Base64
-    return JSON.parse(payload);                        // convierte a objeto JS
+    const base64Payload = token.split('.')[1];
+    const payload = atob(base64Payload);
+    return JSON.parse(payload);
   } catch (e) {
-    return null;                                      // retorna null si falla
+    return null;
   }
 }
-
-const token = localStorage.getItem("token");
-const user = token ? parseJwt(token) : null;
 
 const contenidoPorRol = {
   1: {
@@ -43,6 +42,29 @@ const contenidoPorRol = {
 };
 
 function Dashboard() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
+    const decoded = parseJwt(token);
+
+    if (!decoded) {
+      localStorage.removeItem("token");
+      navigate("/");
+      return;
+    }
+    setUser(decoded);
+  }, [navigate]);
+
+  if (!user) return null;
+
   return (
     <div className="dashboardfondo">
       <div className="dashboardhead">

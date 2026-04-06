@@ -1,7 +1,7 @@
 import { data, Link, useNavigate } from "react-router-dom"
 import BackButton from "../components/BackButton"
 import { toast } from "react-toastify"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../App.css"
 import IntlTelInput from "intl-tel-input/reactWithUtils";
 import "intl-tel-input/styles";
@@ -9,6 +9,10 @@ function Login() {
   const [numero, setNumero] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
+
+  useEffect(() => {
+    localStorage.removeItem("token")
+  }, [])
 
   const handleLogin = async () => {
     if (!numero || !password) {

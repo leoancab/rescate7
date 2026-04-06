@@ -9,7 +9,7 @@ export default function BottomNav() {
             <Link className="nav-item">
                 <UsersRound size={24} />
             </Link>
-            <Link className="nav-item">
+            <Link to="/management" className="nav-item">
                 <LayoutPanelTop size={24} />
             </Link>
             <Link className="nav-item">

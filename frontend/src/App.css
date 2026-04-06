@@ -480,3 +480,195 @@ hr {
   font-weight: bolder;
   font-size: larger;
 }
+
+.gestion {
+  height: 100vh;
+  background-image: url('/gestionfondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorgestion {
+  height: 80vh;
+}
+
+.contenedorgestion div {
+  height: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+}
+
+.contenedorgestion div button {
+  background-color: white;
+  width: 40%;
+  height: 60%;
+  color: #072A60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedorgestion div button img {
+  height: 50%;
+}
+
+.visitasolicitar {
+  height: 100vh;
+  background-image: url('/solicitarvisita.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.iglesiahead img {
+  height: 50%;
+  border-radius: 50%;
+}
+
+.contenedortipovisita {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedortipovisita select {
+  height: 75%;
+  width: 75%;
+  background-color: white;
+  color: #000;
+  font-size: 150%;
+}
+
+.contenedorhorariovisita {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedorhorariovisita input {
+  height: 75%;
+  width: 75%;
+  background-color: white;
+  color: #000;
+  font-size: 150%;
+}
+
+.contenedorresumen {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedorresumen textarea {
+  height: 75%;
+  width: 75%;
+  background-color: white;
+  color: #000;
+  font-size: 150%;
+}
+
+.contenedorenviar {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedorenviar button {
+  height: 75%;
+  width: 75%;
+  background-color: #2D7CF3;
+  color: white;
+}
+
+.pedidosoracion {
+  height: 100vh;
+  background-image: url('/pedidosoracion.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.programarvisita {
+  height: 100vh;
+  background-image: url('/programarvisita.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorProgramarVisita {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+.contenedorProgramarVisita select {
+  height: 7.5%;
+  width: 75%;
+  background-color: white;
+  color: #000;
+  border-radius: 10px;
+}
+
+.contenedorProgramarVisita input {
+  background-color: white;
+  color: #000;
+  width: 75%;
+  height: 7.5%;
+  border: none;
+  border-radius: 10px;
+}
+
+.contenedorProgramarVisita div {
+  display: flex;
+  height: 7.5%;
+  gap: 20%;
+}
+
+.contenedorProgramarVisita div input {
+  height: 100%;
+}
+
+.contenedorProgramarVisita textarea {
+  height: 30%;
+  width: 75%;
+  background-color: white;
+  color: #000;
+  border-radius: 10px;
+}
+
+.contenedorProgramarVisita button {
+  background-color: #2D7CF3;
+  color: white;
+  width: 75%;
+  height: 7.5%;
+}
+
+.testimonio {
+  height: 100vh;
+  background-image: url('/testimoniosfondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
