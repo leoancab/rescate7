@@ -34,7 +34,8 @@ function Login() {
         throw new Error(data.message || "Error en login")
       }
       localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+      //localStorage.setItem("user", JSON.stringify(data.user))
+      console.log(data)
       toast.success("Bienvenido 👌")
       navigate("/test")
     } catch (error) {
