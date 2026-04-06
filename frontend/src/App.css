@@ -672,3 +672,39 @@ hr {
   display: flex;
   flex-direction: column;
 }
+
+.contenedorbotonestestimonio {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+.contenedorbotonestestimonio button {
+  background-color: white;
+  color: #000;
+  display: flex;
+  gap: 5%;
+}
+
+.contenedorentrada {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55vh;
+}
+
+.contenedorentrada textarea {
+  background-color: white;
+  color: #000;
+  height: 75%;
+  width: 75%;
+}
+
+.contenedorenviartestimonio {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
