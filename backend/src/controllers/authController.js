@@ -83,8 +83,7 @@ exports.login = async (req, res) => {
     res.json({
       success: true,
       message: "Login exitoso",
-      token,
-      user: userData
+      token
     })
   } catch (error) {
     console.error(error)
