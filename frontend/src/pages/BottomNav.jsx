@@ -12,7 +12,7 @@ export default function BottomNav() {
             <Link to="/management" className="nav-item">
                 <LayoutPanelTop size={24} />
             </Link>
-            <Link className="nav-item">
+            <Link to="/counseling" className="nav-item">
                 <Heart size={24} />
             </Link>
             <Link to="/profile" className="nav-item">

@@ -47,7 +47,7 @@ function Management() {
                         <img src="/management/testimonios.png" alt="Testimonios Espirituales" />
                         Testimonios Espirituales
                     </button>
-                    <button>
+                    <button onClick={() => navigate("/management/friendship")}>
                         <img src="/management/amistades.png" alt="Cultivando amistades" />
                         Cultivando amistades
                     </button>

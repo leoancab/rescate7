@@ -16,6 +16,13 @@ function Profile() {
                     PERFIL DE USUARIO
                 </div>
             </div>
+            <div className="contenedorfoto">
+                <img src="/defaultprofile.png"/>
+                Editar foto de perfil
+            </div>
+            <div>
+                
+            </div>
             <BottomNav />
         </div>
     )

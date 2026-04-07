@@ -1,10 +1,12 @@
 import BottomNav from "./BottomNav";
-import { Video, Mic, SquarePen } from "lucide-react"
-import { useState } from "react";
+import { Video, Mic, SquarePen, Upload } from "lucide-react"
+import { useState, useRef } from "react";
 
 function Testimony() {
 
     const [tipo, setTipo] = useState("texto");
+
+    const fileRef = useRef(null);
 
     return (
         <div className="testimonio">
@@ -28,10 +30,16 @@ function Testimony() {
             </div>
             <div className="contenedorentrada">
                 {tipo === "video" && (
-                    <input type="file" accept="video/*" />
+                    <>
+                        <button onClick={() => fileRef.current.click()}><Upload /></button>
+                        <input type="file" accept="video/*" ref={fileRef} hidden />
+                    </>
                 )}
                 {tipo === "audio" && (
-                    <input type="file" accept="audio/*" />
+                    <>
+                        <button onClick={() => fileRef.current.click()}><Upload /></button>
+                        <input type="file" accept="audio/*" ref={fileRef} hidden />
+                    </>
                 )}
                 {tipo === "texto" && (
                     <textarea placeholder="Escribe tu mensaje..." />

@@ -545,7 +545,9 @@ hr {
   width: 75%;
   background-color: white;
   color: #000;
-  font-size: 150%;
+  font-size: larger;
+  border-radius: 20px;
+  border: none;
 }
 
 .contenedorhorariovisita {
@@ -560,7 +562,9 @@ hr {
   width: 75%;
   background-color: white;
   color: #000;
-  font-size: 150%;
+  font-size: larger;
+  border-radius: 20px;
+  border: none;
 }
 
 .contenedorresumen {
@@ -702,9 +706,109 @@ hr {
   width: 75%;
 }
 
+.contenedorentrada button {
+  background-color: white;
+  color: #000;
+}
+
 .contenedorenviartestimonio {
   height: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.contenedorenviartestimonio button {
+  background-color: #2D7CF3;
+  color: white;
+  height: 50%;
+  width: 50%;
+}
+
+.amistad {
+  height: 100vh;
+  background-image: url('/amistadfondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.datosIglesia {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+
+.datosIglesia div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0F2F61;
+  height: 60%;
+  width: 25%;
+  border-radius: 20px;
+}
+
+.cantidadIglesia {
+  font-size: x-large;
+}
+
+.factorescantidad {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.factorescantidad div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  width: 100%;
+  gap: 10%;
+}
+
+.factorescantidad div div {
+  height: 75%;
+  width: 15%;
+  border-radius: 20%;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.datoFactor1 {
+  background-color: #F32D39;
+}
+
+.datoFactor2 {
+  background-color: #F38C2D;
+}
+
+.datoFactor3 {
+  background-color: #45BD4A;
+}
+
+.datoFactor4 {
+  background-color: #2D94F3;
+}
+
+.contenedorfoto {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+}
+
+.contenedorfoto img {
+  height: 60%;
+  border-radius: 50%;
 }
