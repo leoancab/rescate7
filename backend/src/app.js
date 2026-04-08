@@ -15,6 +15,7 @@ const districtRoutes = require("./routes/districtRoutes");
 const missionRoutes = require("./routes/missionRoutes");
 const unionRoutes = require("./routes/unionRoutes")
 const divisionRoutes = require("./routes/divisionRoutes")
+const testimonyRoutes = require("./routes/testimonyRoutes")
 
 app.use(cors())
 app.use(express.json())
@@ -28,6 +29,7 @@ app.use("/district", districtRoutes)
 app.use("/mission", missionRoutes)
 app.use("/union", unionRoutes)
 app.use("/division", divisionRoutes)
+app.use("/testimony", testimonyRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log("Servidor corriendo en puerto " + process.env.PORT)

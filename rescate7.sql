@@ -106,6 +106,19 @@ CREATE TABLE visitas_misioneras (
     ON UPDATE CASCADE
 );
 
+CREATE TABLE testimonios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    tipo ENUM('video', 'audio', 'texto') NOT NULL,
+    contenido TEXT,
+    media_url VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
 CREATE INDEX idx_uniones_division ON uniones(id_division);
 CREATE INDEX idx_misiones_union ON misiones(id_union);
 CREATE INDEX idx_distritos_mision ON distritos(id_mision);

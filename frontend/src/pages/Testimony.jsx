@@ -6,27 +6,53 @@ function Testimony() {
 
     const [file, setFile] = useState(null);
     const [tipo, setTipo] = useState("texto");
+    const [texto, setTexto] = useState("");
     const fileRef = useRef(null);
 
-    const handleUpload = async () => {
-        if (!file) return alert("Selecciona un archivo");
-
-        const formData = new FormData();
-        formData.append("file", file);
-
+    function parseJwt(token) {
         try {
-            const res = await fetch("http://localhost:5000/upload", {
+            const base64Payload = token.split('.')[1];
+            const payload = atob(base64Payload);
+            return JSON.parse(payload);
+        } catch (e) {
+            return null;
+        }
+    }
+
+    const token = localStorage.getItem("token");
+    const user = token ? parseJwt(token) : null;
+    const id_usuario = user?.id;
+    console.log(user)
+
+    const handleUpload = async () => {
+        try {
+            const formData = new FormData();
+
+            formData.append("id_usuario", id_usuario); // ⚠️ luego desde login
+            formData.append("tipo", tipo);
+
+            if (tipo === "texto") {
+                if (!texto) return alert("Escribe un mensaje");
+                formData.append("contenido", texto);
+            } else {
+                if (!file) return alert("Selecciona un archivo");
+                formData.append("file", file);
+            }
+
+            const res = await fetch("http://localhost:3000/testimony", {
                 method: "POST",
                 body: formData,
             });
 
             const data = await res.json();
-            console.log("URL:", data.url);
 
-            alert("Archivo subido correctamente");
+            console.log(data);
+
+            alert("Testimonio enviado correctamente");
+
         } catch (error) {
             console.error(error);
-            alert("Error al subir");
+            alert("Error");
         }
     };
 
@@ -64,7 +90,11 @@ function Testimony() {
                     </>
                 )}
                 {tipo === "texto" && (
-                    <textarea placeholder="Escribe tu mensaje..." />
+                    <textarea
+                        placeholder="Escribe tu mensaje..."
+                        value={texto}
+                        onChange={(e) => setTexto(e.target.value)}
+                    />
                 )}
             </div>
             <div className="contenedorenviartestimonio">
