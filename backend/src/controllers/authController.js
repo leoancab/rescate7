@@ -31,8 +31,15 @@ exports.register = async (req, res) => {
     res.json({ message: "Usuario creado correctamente" });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error interno del servidor" });
+    console.error("🔥 ERROR REAL:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+      code: error.code,
+      sqlMessage: error.sqlMessage,
+      sql: error.sql
+    });
   }
 };
 
@@ -53,15 +60,17 @@ exports.login = async (req, res) => {
     // 🔥 JOIN para obtener el rol real (string)
     const [rows] = await pool.query(`
       SELECT 
-        u.id,
-        u.nom_usuario,
-        u.password,
-        u.id_iglesia,
-        u.id_grupo,
-        t.tipo AS rol
-      FROM usuarios u
-      JOIN tipo_usuario t ON u.id_tipo_usuario = t.id
-      WHERE u.nro_celular = ?
+      u.id,
+      u.nom_usuario,
+      u.password,
+      t.tipo AS rol,
+      i.nom_iglesia,
+      g.nom_grupo
+    FROM usuarios u
+    JOIN tipo_usuario t ON u.id_tipo_usuario = t.id
+    LEFT JOIN iglesias i ON u.id_iglesia = i.id
+    LEFT JOIN grupos g ON u.id_grupo = g.id
+    WHERE u.nro_celular = ?
     `, [nro_celular]);
 
     if (rows.length === 0) {
@@ -88,8 +97,8 @@ exports.login = async (req, res) => {
         id: user.id,
         rol: user.rol,
         nom_usuario: user.nom_usuario,
-        id_iglesia: user.id_iglesia,
-        id_grupo: user.id_grupo
+        nom_iglesia: user.nom_iglesia,
+        nom_grupo: user.nom_grupo
       },
       process.env.JWT_SECRET,
       { expiresIn: "24h" }

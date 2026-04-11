@@ -15,7 +15,7 @@ function parseJwt(token) {
 
 const contenidoPorRol = {
   admin: {
-    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.id_iglesia}<br />Grupo Gedeón</div>),
+    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.nom_iglesia}<br />Grupo {user.nom_grupo}</div>),
     cont2: <div>Admin Contenedor 2</div>,
     cont3: <div>Admin Contenedor 3</div>,
   },

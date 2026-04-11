@@ -71,8 +71,8 @@ CREATE TABLE usuarios (
     password VARCHAR(255) NOT NULL,
     fec_nacim DATE,
     id_tipo_usuario INT NOT NULL,
-    id_iglesia INT,
-    id_grupo INT,
+    id_iglesia INT NOT NULL,
+    id_grupo INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
@@ -81,11 +81,11 @@ CREATE TABLE usuarios (
     ON UPDATE CASCADE,
 
     FOREIGN KEY (id_iglesia) REFERENCES iglesias(id)
-    ON DELETE SET NULL
+    ON DELETE RESTRICT
     ON UPDATE CASCADE,
 
     FOREIGN KEY (id_grupo) REFERENCES grupos(id)
-    ON DELETE SET NULL
+    ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
 
