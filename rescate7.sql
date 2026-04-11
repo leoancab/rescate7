@@ -71,8 +71,8 @@ CREATE TABLE usuarios (
     password VARCHAR(255) NOT NULL,
     fec_nacim DATE,
     id_tipo_usuario INT NOT NULL,
-    id_iglesia INT NULL,
-    id_grupo INT NULL,
+    id_iglesia INT,
+    id_grupo INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 

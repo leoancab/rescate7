@@ -14,27 +14,27 @@ function parseJwt(token) {
 }
 
 const contenidoPorRol = {
-  1: {
-    cont1: <div>Admin Contenedor 1</div>,
+  admin: {
+    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.id_iglesia}<br />Grupo Gedeón</div>),
     cont2: <div>Admin Contenedor 2</div>,
     cont3: <div>Admin Contenedor 3</div>,
   },
-  2: {
+  liderIglesia: {
     cont1: <div>Lider Iglesia Contenedor 1</div>,
     cont2: <div>Lider Iglesia Contenedor 2</div>,
     cont3: <div>Lider Iglesia Contenedor 3</div>,
   },
-  3: {
+  liderGrupo: {
     cont1: <div>Lider Grupo Contenedor 1</div>,
     cont2: <div>Lider Grupo Contenedor 2</div>,
     cont3: <div>Lider Grupo Contenedor 3</div>,
   },
-  4: {
+  miembro: {
     cont1: <div>Miembro Contenedor 1</div>,
     cont2: <div>Miembro Contenedor 2</div>,
     cont3: <div>Miembro Contenedor 3</div>,
   },
-  5: {
+  prospecto: {
     cont1: <div>Prospecto Contenedor 1</div>,
     cont2: <div>Prospecto Contenedor 2</div>,
     cont3: <div>Prospecto Contenedor 3</div>,
@@ -54,6 +54,8 @@ function Dashboard() {
     }
 
     const decoded = parseJwt(token);
+
+    console.log("Usuario decodificado:", decoded);
 
     if (!decoded) {
       localStorage.removeItem("token");
@@ -91,13 +93,13 @@ function Dashboard() {
         </div>
       </div>
       <div className="contenedor1dashboard">
-        {contenidoPorRol[user.role]?.cont1}
+        {contenidoPorRol[user.rol]?.cont1(user)}
       </div>
       <div className="contenedor2dashboard">
-        {contenidoPorRol[user.role]?.cont2}
+        {contenidoPorRol[user.rol]?.cont2}
       </div>
       <div className="contenedor3dashboard">
-        {contenidoPorRol[user.role]?.cont3}
+        {contenidoPorRol[user.rol]?.cont3}
       </div>
       <BottomNav />
     </div>

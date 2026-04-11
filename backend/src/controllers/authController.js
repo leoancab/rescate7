@@ -5,9 +5,9 @@ const { hashPassword, comparePassword } = require("../utils/hash");
 // ✅ REGISTER
 exports.register = async (req, res) => {
   try {
-    const { nom_usuario, nro_celular, password, id_tipo_usuario } = req.body;
+    const { nom_usuario, nro_celular, password, id_tipo_usuario, id_iglesia, id_grupo } = req.body;
 
-    if (!nom_usuario || !nro_celular || !password || !id_tipo_usuario) {
+    if (!nom_usuario || !nro_celular || !password || !id_tipo_usuario || !id_iglesia || !id_grupo) {
       return res.status(400).json({ message: "Faltan campos obligatorios" });
     }
 
@@ -24,8 +24,8 @@ exports.register = async (req, res) => {
     const hashed = await hashPassword(password);
 
     await pool.query(
-      "INSERT INTO usuarios (nom_usuario, nro_celular, password, id_tipo_usuario) VALUES (?, ?, ?, ?)",
-      [nom_usuario, nro_celular, hashed, id_tipo_usuario]
+      "INSERT INTO usuarios (nom_usuario, nro_celular, password, id_tipo_usuario, id_iglesia, id_grupo) VALUES (?, ?, ?, ?, ?, ?)",
+      [nom_usuario, nro_celular, hashed, id_tipo_usuario, id_iglesia, id_grupo]
     );
 
     res.json({ message: "Usuario creado correctamente" });
@@ -56,6 +56,8 @@ exports.login = async (req, res) => {
         u.id,
         u.nom_usuario,
         u.password,
+        u.id_iglesia,
+        u.id_grupo,
         t.tipo AS rol
       FROM usuarios u
       JOIN tipo_usuario t ON u.id_tipo_usuario = t.id
@@ -85,7 +87,9 @@ exports.login = async (req, res) => {
       {
         id: user.id,
         rol: user.rol,
-        nom_usuario: user.nom_usuario
+        nom_usuario: user.nom_usuario,
+        id_iglesia: user.id_iglesia,
+        id_grupo: user.id_grupo
       },
       process.env.JWT_SECRET,
       { expiresIn: "24h" }

@@ -310,14 +310,23 @@ hr {
 
 .contenedor1dashboard {
   height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contenedor2dashboard {
   height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contenedor3dashboard {
   height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bottom-nav {
@@ -811,4 +820,20 @@ hr {
 .contenedorfoto img {
   height: 60%;
   border-radius: 50%;
+}
+
+.admincont1 {
+  background-color: #EDF4F8;
+  height: 85%;
+  width: 85%;
+  color: #072A60;
+  border-radius: 50px;
+}
+
+.admincont1 img {
+  height: 50%;
+  border-radius: 50%;
+  border: #000;
+  border-color: #000;
+  border-style: double;
 }
