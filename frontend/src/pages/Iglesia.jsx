@@ -1,6 +1,40 @@
 import BottomNav from "./BottomNav";
 import { Church } from "lucide-react";
+import { useState, useEffect } from "react";
+
+function parseJwt(token) {
+    try {
+        const base64Payload = token.split('.')[1];
+        const payload = atob(base64Payload);
+        return JSON.parse(payload);
+    } catch (e) {
+        return null;
+    }
+}
+
 function Iglesia() {
+    const [totalUsuarios, setTotalUsuarios] = useState(0);
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        console.log("TOKEN:", token);
+        if (token) {
+            const decoded = parseJwt(token);
+            setUser(decoded);
+        }
+        if (token) {
+            fetch("http://localhost:3000/users/count", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setTotalUsuarios(data.total);
+                })
+                .catch(err => console.error(err));
+        }
+    }, []);
     return (
         <div className="iglesia">
             <div className="dashboardhead">
@@ -19,7 +53,7 @@ function Iglesia() {
             <div className="datosIglesia">
                 <div>
                     <span>Miembros</span>
-                    <span className="cantidadIglesia">0</span>
+                    <span className="cantidadIglesia">{totalUsuarios}</span>
                 </div>
                 <div>
                     <span>Usuarios</span>

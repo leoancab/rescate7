@@ -31,7 +31,8 @@ function authMiddleware(req, res, next) {
     req.user = {
       id: decoded.id,
       rol: decoded.rol,
-      nom_usuario: decoded.nom_usuario
+      nom_usuario: decoded.nom_usuario,
+      id_iglesia: decoded.id_iglesia
     };
 
     next();

@@ -20,22 +20,47 @@ const contenidoPorRol = {
     cont3: <div>Admin Contenedor 3</div>,
   },
   liderIglesia: {
-    cont1: <div>Lider Iglesia Contenedor 1</div>,
+    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.nom_iglesia}<br />Grupo {user.nom_grupo}</div>),
     cont2: <div>Lider Iglesia Contenedor 2</div>,
     cont3: <div>Lider Iglesia Contenedor 3</div>,
   },
   liderGrupo: {
-    cont1: <div>Lider Grupo Contenedor 1</div>,
+    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.nom_iglesia}<br />Grupo {user.nom_grupo}</div>),
     cont2: <div>Lider Grupo Contenedor 2</div>,
     cont3: <div>Lider Grupo Contenedor 3</div>,
   },
   miembro: {
-    cont1: <div>Miembro Contenedor 1</div>,
-    cont2: <div>Miembro Contenedor 2</div>,
-    cont3: <div>Miembro Contenedor 3</div>,
+    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.nom_iglesia}<br />Grupo {user.nom_grupo}</div>),
+    cont2:
+      <div className="miembrocont2">
+        <div className="dashboardgestiontitulo">Mi gestión</div>
+        <div className="dashboardgestioninfo">
+          <div className="dashboardgestioninfo1">
+            <div>
+              <img src="/management/realizarVisita.png" /><span>Visitas Recibidas</span>
+            </div>
+            <div>
+              <img src="/management/pedidos.png" /><span>Pedidos de Oración</span>
+            </div>
+            <div>
+              <img src="/management/testimonios.png" /><span>Testimonios Espirituales</span>
+            </div>
+            <div>
+              <img src="/management/amistades.png" /><span>Cultivando Amistades</span>
+            </div>
+          </div>
+          <div className="dashboardgestioninfo2">
+            <div>0</div>
+            <div>0</div>
+            <div>0</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>,
+    cont3: <div className="miembrocont2"><div className="dashboardgestiontitulo">Mis Estudios y Materiales</div></div>,
   },
   prospecto: {
-    cont1: <div>Prospecto Contenedor 1</div>,
+    cont1: (user) => (<div className="admincont1"><img src="/defaultprofile.png" />{user.nom_usuario}<br />Miembro de {user.nom_iglesia}<br />Grupo {user.nom_grupo}</div>),
     cont2: <div>Prospecto Contenedor 2</div>,
     cont3: <div>Prospecto Contenedor 3</div>,
   },

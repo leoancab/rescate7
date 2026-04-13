@@ -837,3 +837,57 @@ hr {
   border-color: #000;
   border-style: double;
 }
+
+.miembrocont2 {
+  background-color: #EDF4F8;
+  height: 85%;
+  width: 85%;
+  color: #072A60;
+  border-radius: 50px;
+}
+
+.dashboardgestiontitulo {
+  height: 10%;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.dashboardgestioninfo {
+  height: 90%;
+  display: flex;
+}
+
+.dashboardgestioninfo1 {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardgestioninfo1 div {
+  display: flex;
+  align-items: center;
+  height: 25%;
+  gap: 5%;
+  margin-left: 10%;
+  font-weight: bold;
+}
+
+.dashboardgestioninfo1 div img {
+  height: 50%;
+}
+
+.dashboardgestioninfo2 {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardgestioninfo2 div {
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}

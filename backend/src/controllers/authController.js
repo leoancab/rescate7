@@ -64,7 +64,9 @@ exports.login = async (req, res) => {
       u.nom_usuario,
       u.password,
       t.tipo AS rol,
+      u.id_iglesia,
       i.nom_iglesia,
+      u.id_grupo,
       g.nom_grupo
     FROM usuarios u
     JOIN tipo_usuario t ON u.id_tipo_usuario = t.id
@@ -97,7 +99,9 @@ exports.login = async (req, res) => {
         id: user.id,
         rol: user.rol,
         nom_usuario: user.nom_usuario,
+        id_iglesia: user.id_iglesia,
         nom_iglesia: user.nom_iglesia,
+        id_grupo: user.id_grupo,
         nom_grupo: user.nom_grupo
       },
       process.env.JWT_SECRET,
