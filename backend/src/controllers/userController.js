@@ -183,12 +183,13 @@ exports.countByIglesia = async (req, res) => {
   try {
     const idIglesia = req.user.id_iglesia;
 
-    const [rows] = await db.query(
+    const [rows] = await pool.query(
       "SELECT COUNT(*) AS total FROM usuarios WHERE id_iglesia = ?",
       [idIglesia]
     );
     res.json({ total: rows[0].total });
   } catch (error) {
-
+    console.error("ERROR EN countByIglesia:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 }

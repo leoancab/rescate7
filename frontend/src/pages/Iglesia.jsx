@@ -17,9 +17,9 @@ function Iglesia() {
     const [user, setUser] = useState(null);
     useEffect(() => {
         const token = localStorage.getItem("token");
-        console.log("TOKEN:", token);
         if (token) {
             const decoded = parseJwt(token);
+            console.log("USER:", decoded);
             setUser(decoded);
         }
         if (token) {

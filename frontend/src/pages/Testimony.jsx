@@ -22,13 +22,11 @@ function Testimony() {
     const token = localStorage.getItem("token");
     const user = token ? parseJwt(token) : null;
     const id_usuario = user?.id;
-    console.log(user)
 
     const handleUpload = async () => {
         try {
             const formData = new FormData();
 
-            formData.append("id_usuario", id_usuario); // ⚠️ luego desde login
             formData.append("tipo", tipo);
 
             if (tipo === "texto") {
@@ -39,8 +37,13 @@ function Testimony() {
                 formData.append("file", file);
             }
 
+            const token = localStorage.getItem("token");
+
             const res = await fetch("http://localhost:3000/testimony", {
                 method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 body: formData,
             });
 
@@ -49,6 +52,8 @@ function Testimony() {
             console.log(data);
 
             alert("Testimonio enviado correctamente");
+            setTexto("")
+            setFile(null);
 
         } catch (error) {
             console.error(error);

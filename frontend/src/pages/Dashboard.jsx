@@ -70,6 +70,11 @@ function Dashboard() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+  const goToVideoCall = () => {
+    const roomId = Math.random().toString(36).substring(2, 8);
+    navigate(`/call/${roomId}`);
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -104,7 +109,7 @@ function Dashboard() {
         </div>
         <div className="opchead">
           <div className="item">
-            <Webcam size={48} />
+            <Webcam onClick={goToVideoCall} size={48} />
             Visitas
           </div>
           <div className="item">

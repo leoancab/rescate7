@@ -1,6 +1,12 @@
 import BottomNav from "./BottomNav";
+import { useRef } from "react";
+import { Calendar } from "lucide-react";
 
 function ScheduleVisit() {
+    const inputRef = useRef(null);
+    const abrirCalendario = () => {
+        inputRef.current.showPicker();
+    };
     return (
         <div className="programarvisita">
             <div className="dashboardhead">
@@ -25,10 +31,8 @@ function ScheduleVisit() {
                 </select>
                 <input type="text" />
                 <input type="tel" />
-                <div>
-                    <input type="date" />
-                    <input type="time" />
-                </div>
+                <input type="datetime-local" ref={inputRef} hidden/>
+                <button onClick={abrirCalendario}><Calendar size={24}/></button>
                 <textarea type="text" placeholder="Motivo de visita"></textarea>
                 <button>
                     Enviar

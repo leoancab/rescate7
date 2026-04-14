@@ -1,18 +1,16 @@
 const pool = require("../config/db");
-const { v2: cloudinary } = require("cloudinary");
+const cloudinary = require("../config/cloudinary");
 const fs = require("fs");
 
 // ✅ Crear testimonio
 exports.createTestimonio = async (req, res) => {
-    let filePath = req.file?.path; // para limpiar después
+    let filePath = req.file?.path;
 
     try {
-        // 🔐 usuario desde JWT
         const id_usuario = req.user.id;
 
         const { tipo, contenido } = req.body;
 
-        // ✅ Validar tipo
         const tiposValidos = ["video", "audio", "texto"];
         if (!tipo || !tiposValidos.includes(tipo)) {
             return res.status(400).json({
@@ -22,7 +20,6 @@ exports.createTestimonio = async (req, res) => {
 
         let media_url = null;
 
-        // 🎥📢 Si es archivo
         if (tipo !== "texto") {
             if (!req.file) {
                 return res.status(400).json({
@@ -30,7 +27,6 @@ exports.createTestimonio = async (req, res) => {
                 });
             }
 
-            // ✅ Validar mimetype vs tipo
             if (tipo === "video" && !req.file.mimetype.startsWith("video/")) {
                 return res.status(400).json({
                     error: "El archivo no es un video válido"
@@ -43,7 +39,6 @@ exports.createTestimonio = async (req, res) => {
                 });
             }
 
-            // 📁 Definir carpeta en Cloudinary
             let folder = "rescate7/otros";
 
             if (tipo === "video") {
@@ -52,23 +47,20 @@ exports.createTestimonio = async (req, res) => {
                 folder = "rescate7/audiosTestimonio";
             }
 
-            // ☁️ Subir a Cloudinary
             const result = await cloudinary.uploader.upload(filePath, {
                 resource_type: "auto",
-                folder: folder,
+                folder: folder
             });
 
             media_url = result.secure_url;
         }
 
-        // ✍️ Validar texto
         if (tipo === "texto" && (!contenido || contenido.trim() === "")) {
             return res.status(400).json({
                 error: "Debes escribir un mensaje"
             });
         }
 
-        // 💾 Guardar en DB
         const sql = `
             INSERT INTO testimonios (id_usuario, tipo, contenido, media_url)
             VALUES (?, ?, ?, ?)
@@ -98,7 +90,6 @@ exports.createTestimonio = async (req, res) => {
         res.status(500).json({ error: "Error en el proceso" });
 
     } finally {
-        // 🧹 borrar archivo SIEMPRE (aunque falle Cloudinary)
         if (filePath) {
             fs.unlink(filePath, (err) => {
                 if (err) {

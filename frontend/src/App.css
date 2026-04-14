@@ -657,10 +657,6 @@ hr {
   gap: 20%;
 }
 
-.contenedorProgramarVisita div input {
-  height: 100%;
-}
-
 .contenedorProgramarVisita textarea {
   height: 30%;
   width: 75%;
