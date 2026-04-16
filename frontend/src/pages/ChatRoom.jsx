@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import AgoraRTC from "agora-rtc-sdk-ng";
+import BackButton from "../components/BackButton"
 
 const APP_ID = "5eedd672de6a43abbc40a4d5fd9ccd02";
 
@@ -73,14 +74,13 @@ export default function ChatRoom() {
     if (!token) return <p>Conectando...</p>;
 
     return (
-        <div style={{ display: "flex", gap: "10px" }}>
-
-            {/* 🎥 VIDEO LOCAL O PANTALLA NEGRA */}
+        <div style={{ gap: "1vh", display: "flex", flexDirection: "column" }}>
+            <BackButton />
             <div
                 ref={hasVideo ? localRef : null}
                 style={{
-                    width: "50%",
-                    height: "300px",
+                    width: "100%",
+                    height: "45vh",
                     backgroundColor: hasVideo ? "transparent" : "black",
                     display: "flex",
                     alignItems: "center",
@@ -95,8 +95,8 @@ export default function ChatRoom() {
             <div
                 ref={remoteRef}
                 style={{
-                    width: "50%",
-                    height: "300px",
+                    width: "100%",
+                    height: "45vh",
                     backgroundColor: "black"
                 }}
             />
