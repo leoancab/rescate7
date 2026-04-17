@@ -1,6 +1,51 @@
+import { useState, useEffect } from "react";
 import BottomNav from "./BottomNav";
 
 function Friendships() {
+
+    const [categoria, setCategoria] = useState("");
+    const [usuario, setUsuario] = useState("");
+    const [mensaje, setMensaje] = useState("");
+    const [usuarios, setUsuarios] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchUsuarios = async () => {
+            try {
+                const res = await fetch("http://localhost:3000/users/by-rol?rol=4", {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+
+                const data = await res.json();
+                setUsuarios(data);
+
+            } catch (error) {
+                console.error("Error cargando usuarios:", error);
+            }
+        };
+
+        fetchUsuarios();
+    }, []);
+
+    const handleEnviar = () => {
+        if (!categoria || !usuario || !mensaje) return;
+
+        setLoading(true);
+
+        // Simulación de envío
+        setTimeout(() => {
+            alert("Mensaje enviado correctamente 🙌");
+            setCategoria("");
+            setUsuario("");
+            setMensaje("");
+            setLoading(false);
+        }, 1000);
+    };
+
+    const isValid = categoria && usuario && mensaje;
+
     return (
         <div className="amistad">
             <div className="dashboardhead">
@@ -16,30 +61,61 @@ function Friendships() {
                     CULTIVANDO AMISTADES
                 </div>
             </div>
+
+            {/* Categoría */}
             <div className="contenedortipovisita">
-                <select>
+                <select
+                    value={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
+                >
                     <option value="">Categoría</option>
                     <option value="cumple">Cumpleaños</option>
                     <option value="aniv">Aniversario de Bodas</option>
-                    <option value="bautiz">Bautizmo</option>
+                    <option value="bautiz">Bautismo</option>
                     <option value="trabajo">Buen Trabajo Misionero</option>
                     <option value="nacim">Nacimiento</option>
                     <option value="grad">Graduación</option>
                 </select>
             </div>
+
+            {/* Usuario */}
             <div className="contenedorhorariovisita">
-                <input type="tel" placeholder="Núm. Celular del Usuario" />
+                <select
+                    value={usuario}
+                    onChange={(e) => setUsuario(e.target.value)}
+                >
+                    <option value="">Seleccionar miembro</option>
+
+                    {usuarios.map((u) => (
+                        <option key={u.id} value={u.id}>
+                            {u.nombre}
+                        </option>
+                    ))}
+                </select>
             </div>
+
+            {/* Mensaje */}
             <div className="contenedorresumen">
-                <textarea placeholder="Resumen corto del saludo o felicitación" />
+                <textarea
+                    placeholder="Escribe un mensaje de ánimo o felicitación 🙌"
+                    value={mensaje}
+                    onChange={(e) => setMensaje(e.target.value)}
+                />
             </div>
+
+            {/* Botón */}
             <div className="contenedorenviar">
-                <button>
-                    Enviar
+                <button
+                    onClick={handleEnviar}
+                    disabled={!isValid || loading}
+                >
+                    {loading ? "Enviando..." : "Enviar saludo"}
                 </button>
             </div>
+
             <BottomNav />
         </div>
-    )
+    );
 }
-export default Friendships
+
+export default Friendships;

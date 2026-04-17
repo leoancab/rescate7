@@ -4,6 +4,7 @@ const router = express.Router()
 const userController = require("../controllers/userController")
 const authMiddleware = require("../middleware/authMiddleware")
 
+router.get("/by-rol", authMiddleware, userController.getUsuariosByRol);
 router.get("/count", authMiddleware, userController.countByIglesia);
 router.get("/", authMiddleware, userController.getUsers)
 router.get("/:id", authMiddleware, userController.getUser)

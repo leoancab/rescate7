@@ -17,6 +17,8 @@ const unionRoutes = require("./routes/unionRoutes")
 const divisionRoutes = require("./routes/divisionRoutes")
 const testimonyRoutes = require("./routes/testimonyRoutes")
 const agoraRoutes = require("./routes/agoraRoutes");
+const friendshipRoutes = require("./routes/friendshipRoutes")
+const prayerRoutes = require("./routes/prayerRoutes")
 
 app.use(cors())
 app.use(express.json())
@@ -32,6 +34,8 @@ app.use("/union", unionRoutes)
 app.use("/division", divisionRoutes)
 app.use("/testimony", testimonyRoutes)
 app.use("/agora", agoraRoutes);
+app.use("/friendship", friendshipRoutes)
+app.use("/prayer", prayerRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log("Servidor corriendo en puerto " + process.env.PORT)

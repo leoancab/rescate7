@@ -193,3 +193,23 @@ exports.countByIglesia = async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 }
+
+exports.getUsuariosByRol = async (req, res) => {
+  try {
+    const { rol } = req.query;
+
+    const query = `
+            SELECT id, nom_usuario 
+            FROM usuarios
+            WHERE id_tipo_usuario = ?
+        `;
+
+    const [rows] = await db.execute(query, [rol]);
+
+    res.json(rows);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+};

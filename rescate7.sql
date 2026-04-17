@@ -10,7 +10,6 @@ CREATE TABLE uniones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_division INT NOT NULL,
     nom_union VARCHAR(100) NOT NULL,
-
     FOREIGN KEY (id_division) REFERENCES divisiones(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
@@ -20,7 +19,6 @@ CREATE TABLE misiones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_union INT NOT NULL,
     nom_mision VARCHAR(100) NOT NULL,
-
     FOREIGN KEY (id_union) REFERENCES uniones(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
@@ -30,7 +28,6 @@ CREATE TABLE distritos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_mision INT NOT NULL,
     nom_distrito VARCHAR(100) NOT NULL,
-
     FOREIGN KEY (id_mision) REFERENCES misiones(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
@@ -41,7 +38,6 @@ CREATE TABLE iglesias (
     id_distrito INT NOT NULL,
     nom_iglesia VARCHAR(100) NOT NULL,
     direccion VARCHAR(255),
-
     FOREIGN KEY (id_distrito) REFERENCES distritos(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
@@ -51,7 +47,6 @@ CREATE TABLE grupos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_iglesia INT NOT NULL,
     nom_grupo VARCHAR(100) NOT NULL,
-
     FOREIGN KEY (id_iglesia) REFERENCES iglesias(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
@@ -75,15 +70,12 @@ CREATE TABLE usuarios (
     id_grupo INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
     FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario(id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-
     FOREIGN KEY (id_iglesia) REFERENCES iglesias(id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-
     FOREIGN KEY (id_grupo) REFERENCES grupos(id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
@@ -93,17 +85,41 @@ CREATE TABLE visitas_misioneras (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_visitador INT NOT NULL,
     id_visitado INT NOT NULL,
+    tipo ENUM('Reencuentro', 'Estudio Bíblico', 'Escuela Sabática') NOT NULL,
+    telefono VARCHAR(20),
     fecha_hora DATETIME NOT NULL,
-    estado ENUM('pendiente', 'realizada', 'cancelada') DEFAULT 'pendiente',
+    mensaje TEXT,
+    estado ENUM('pendiente', 'confirmada', 'realizada', 'cancelada') DEFAULT 'pendiente',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_visitador) REFERENCES usuarios(id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_visitado) REFERENCES usuarios(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE pedidos_oracion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    categoria VARCHAR(100) NOT NULL,
+    mensaje TEXT NOT NULL,
+    usuario_id INT NOT NULL,
+    creado_por INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (id_visitador) REFERENCES usuarios(id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (creado_por) REFERENCES usuarios(id)
+);
 
-    FOREIGN KEY (id_visitado) REFERENCES usuarios(id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+CREATE TABLE friendships (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    categoria VARCHAR(50) NOT NULL,
+    mensaje TEXT NOT NULL,
+    usuario_envia_id INT NOT NULL,
+    usuario_recibe_id INT NOT NULL,
+    fecha_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('enviado', 'pendiente', 'error') DEFAULT 'enviado',
+    FOREIGN KEY (usuario_envia_id) REFERENCES usuarios(id),
+    FOREIGN KEY (usuario_recibe_id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE testimonios (
@@ -113,7 +129,6 @@ CREATE TABLE testimonios (
     contenido TEXT,
     media_url VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
