@@ -204,7 +204,7 @@ exports.getUsuariosByRol = async (req, res) => {
             WHERE id_tipo_usuario = ?
         `;
 
-    const [rows] = await db.execute(query, [rol]);
+    const [rows] = await pool.execute(query, [rol]);
 
     res.json(rows);
 
