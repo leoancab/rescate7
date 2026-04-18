@@ -2,19 +2,26 @@ import { useEffect, useState } from "react";
 import BottomNav from "./BottomNav";
 
 function PrayerRequest() {
+
     const [categoria, setCategoria] = useState("");
     const [usuario, setUsuario] = useState("");
     const [mensaje, setMensaje] = useState("");
     const [usuarios, setUsuarios] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // 🔹 Obtener usuarios (simulación API)
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const res = await fetch("http://localhost:3000/users?rol=miembro");
+                const res = await fetch("http://localhost:3000/users/by-rol?rol=4", {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+
                 const data = await res.json();
-                setUsuarios(data);
+
+                setUsuarios(Array.isArray(data) ? data : []);
+
             } catch (error) {
                 console.error("Error cargando usuarios:", error);
             }
@@ -23,62 +30,56 @@ function PrayerRequest() {
         fetchUsuarios();
     }, []);
 
-    // 🔹 Enviar pedido
-    const handleSubmit = async () => {
-        if (!categoria || !usuario || mensaje.length < 10) {
-            alert("Completa todos los campos correctamente (mínimo 10 caracteres)");
-            return;
-        }
+    const handleEnviar = async () => {
+        if (!categoria || !usuario || !mensaje) return;
 
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:3000/prayer-request", {
+            const res = await fetch("http://localhost:3000/prayer", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify({
                     categoria,
                     usuario_id: usuario,
-                    mensaje,
-                }),
+                    mensaje
+                })
             });
 
             const data = await res.json();
 
-            if (!res.ok) throw new Error(data.message);
+            if (!res.ok) {
+                throw new Error(data.message || "Error al enviar");
+            }
 
-            alert("🙏 Pedido de oración enviado correctamente");
+            alert("🙏 Pedido enviado correctamente");
 
-            // Reset
             setCategoria("");
             setUsuario("");
             setMensaje("");
 
         } catch (error) {
             console.error(error);
-            alert("Error al enviar el pedido");
+            alert("Error al enviar pedido ❌");
         } finally {
             setLoading(false);
         }
     };
 
-    const categorias = [
-        "Familia",
-        "Salud",
-        "Trabajo",
-        "Matrimonio",
-        "Hijos",
-        "Otros",
-    ];
+    const isValid = categoria && usuario && mensaje;
 
     return (
         <div className="pedidosoracion">
-            {/* HEADER */}
             <div className="dashboardhead">
                 <div className="logohead">
-                    <img src="/logo.png" alt="Rescate7" className="logoLogIn" />
+                    <img
+                        src="/logo.png"
+                        alt="Rescate7"
+                        className="logoLogIn"
+                    />
                 </div>
                 <div className="iglesiahead">
                     <img src="/management/pedidos.png" alt="Pedido de Oración" />
@@ -86,54 +87,54 @@ function PrayerRequest() {
                 </div>
             </div>
 
-            {/* CATEGORÍAS */}
+            {/* Categoría */}
             <div className="contenedortipovisita">
-                <label>Categoría</label>
-                <div className="categorias">
-                    {categorias.map((cat) => (
-                        <button
-                            key={cat}
-                            className={categoria === cat ? "active" : ""}
-                            onClick={() => setCategoria(cat)}
-                        >
-                            {cat}
-                        </button>
-                    ))}
-                </div>
+                <select
+                    value={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
+                >
+                    <option value="">Categoría</option>
+                    <option value="familia">Familia</option>
+                    <option value="salud">Salud</option>
+                    <option value="trabajo">Trabajo</option>
+                    <option value="matrimonio">Matrimonio</option>
+                    <option value="hijos">Hijos</option>
+                    <option value="otros">Otros</option>
+                </select>
             </div>
 
-            {/* USUARIO */}
+            {/* Usuario */}
             <div className="contenedorhorariovisita">
-                <label>Seleccionar miembro</label>
                 <select
                     value={usuario}
                     onChange={(e) => setUsuario(e.target.value)}
                 >
-                    <option value="">Selecciona un usuario</option>
-                    {usuarios.map((user) => (
-                        <option key={user.id} value={user.id}>
-                            {user.nombre}
+                    <option value="">Seleccionar miembro</option>
+
+                    {usuarios.map((u) => (
+                        <option key={u.id} value={u.id}>
+                            {u.nom_usuario}
                         </option>
                     ))}
                 </select>
             </div>
 
-            {/* MENSAJE */}
+            {/* Mensaje */}
             <div className="contenedorresumen">
-                <label>Pedido de oración</label>
                 <textarea
-                    placeholder="Describe de forma breve y concisa el pedido..."
+                    placeholder="Escribe tu pedido de oración 🙏"
                     value={mensaje}
                     onChange={(e) => setMensaje(e.target.value)}
-                    maxLength={300}
                 />
-                <p>{mensaje.length}/300</p>
             </div>
 
-            {/* BOTÓN */}
+            {/* Botón */}
             <div className="contenedorenviar">
-                <button onClick={handleSubmit} disabled={loading}>
-                    {loading ? "Enviando..." : "Enviar"}
+                <button
+                    onClick={handleEnviar}
+                    disabled={!isValid || loading}
+                >
+                    {loading ? "Enviando..." : "Enviar pedido"}
                 </button>
             </div>
 

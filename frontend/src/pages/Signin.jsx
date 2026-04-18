@@ -18,7 +18,6 @@ function Signin() {
     }
     const handleRegister = async () => {
         const password = "123456"
-        console.log(password)
         if (!celular || !nombre) {
             toast.dismiss()
             toast.error("Debes completar todos los campos", {
@@ -53,7 +52,6 @@ function Signin() {
                     })
                 })
                 const data = await response.json()
-                console.log("Respuesta:", data)
                 alert("Clave temporal enviada. Revisa tu WhatsApp.")
             } catch (error) {
                 console.error("Error:", error)

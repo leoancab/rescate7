@@ -19,7 +19,6 @@ function Iglesia() {
         const token = localStorage.getItem("token");
         if (token) {
             const decoded = parseJwt(token);
-            console.log("USER:", decoded);
             setUser(decoded);
         }
         if (token) {

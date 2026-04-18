@@ -39,7 +39,6 @@ function Login() {
       }
       localStorage.setItem("token", data.token)
       //localStorage.setItem("user", JSON.stringify(data.user))
-      console.log(data)
       toast.success("Bienvenido 👌")
       navigate("/test")
     } catch (error) {
@@ -69,9 +68,6 @@ function Login() {
             preferredCountries={["ec", "us", "es"]}
             value={numero}
             onChangeNumber={(number) => setNumero(number)}
-            onChangeValidity={(isValid) => {
-              console.log("¿Número válido?", isValid);
-            }}
             inputProps={{
               placeholder: "Número de Celular",
               className: "inputTelefono"

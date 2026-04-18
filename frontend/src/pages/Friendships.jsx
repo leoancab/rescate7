@@ -19,7 +19,7 @@ function Friendships() {
                 });
 
                 const data = await res.json();
-                setUsuarios(data);
+                setUsuarios(Array.isArray(data) ? data : []);
 
             } catch (error) {
                 console.error("Error cargando usuarios:", error);
@@ -29,19 +29,43 @@ function Friendships() {
         fetchUsuarios();
     }, []);
 
-    const handleEnviar = () => {
+    const handleEnviar = async () => {
         if (!categoria || !usuario || !mensaje) return;
 
-        setLoading(true);
+        try {
+            setLoading(true);
 
-        // Simulación de envío
-        setTimeout(() => {
+            const res = await fetch("http://localhost:3000/friendship", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    categoria,
+                    usuario_recibe_id: usuario,
+                    mensaje
+                })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.message || "Error al enviar");
+            }
+
             alert("Mensaje enviado correctamente 🙌");
+
             setCategoria("");
             setUsuario("");
             setMensaje("");
+
+        } catch (error) {
+            console.error(error);
+            alert("Error al enviar mensaje ❌");
+        } finally {
             setLoading(false);
-        }, 1000);
+        }
     };
 
     const isValid = categoria && usuario && mensaje;
@@ -88,7 +112,7 @@ function Friendships() {
 
                     {usuarios.map((u) => (
                         <option key={u.id} value={u.id}>
-                            {u.nombre}
+                            {u.nom_usuario}
                         </option>
                     ))}
                 </select>

@@ -85,8 +85,6 @@ function Dashboard() {
 
     const decoded = parseJwt(token);
 
-    console.log("Usuario decodificado:", decoded);
-
     if (!decoded) {
       localStorage.removeItem("token");
       navigate("/");

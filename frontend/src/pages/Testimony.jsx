@@ -49,8 +49,6 @@ function Testimony() {
 
             const data = await res.json();
 
-            console.log(data);
-
             alert("Testimonio enviado correctamente");
             setTexto("")
             setFile(null);

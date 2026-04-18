@@ -1,5 +1,5 @@
 import BottomNav from "./BottomNav";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Calendar } from "lucide-react";
 
 function ScheduleVisit() {
@@ -7,29 +7,73 @@ function ScheduleVisit() {
 
     const [tipo, setTipo] = useState("");
     const [usuario, setUsuario] = useState("");
-    const [telefono, setTelefono] = useState("");
     const [fecha, setFecha] = useState("");
     const [mensaje, setMensaje] = useState("");
+    const [usuarios, setUsuarios] = useState([]);
 
     const abrirCalendario = () => {
         inputRef.current.showPicker();
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // 🔹 Traer miembros (igual que en otras pantallas)
+    useEffect(() => {
+        const token = localStorage.getItem("token");
 
+        fetch("http://localhost:3000/users/by-rol?rol=4", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Miembros:", data);
+                setUsuarios(data);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+    const handleSubmit = async () => {
         if (!tipo || !usuario || !fecha) {
             alert("Completa los campos obligatorios");
             return;
         }
 
-        console.log({
-            tipo,
-            usuario,
-            telefono,
-            fecha,
-            mensaje
-        });
+        try {
+            const token = localStorage.getItem("token");
+
+            const res = await fetch("http://localhost:3000/visits", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    tipo,
+                    usuario_id: usuario,
+                    fecha,
+                    mensaje
+                })
+            });
+
+            if (!res.ok) {
+                throw new Error("Error al guardar");
+            }
+
+            const data = await res.json();
+            console.log("Guardado:", data);
+
+            alert("Visita programada correctamente ✅");
+
+            // 🔥 LIMPIAR CAMPOS
+            setTipo("");
+            setUsuario("");
+            setFecha("");
+            setMensaje("");
+
+        } catch (error) {
+            console.error(error);
+            alert("Error al guardar la visita ❌");
+        }
     };
 
     return (
@@ -44,29 +88,27 @@ function ScheduleVisit() {
                 </div>
             </div>
 
-            <form className="contenedorProgramarVisita" onSubmit={handleSubmit}>
+            <div className="contenedorProgramarVisita">
 
-                <select value={tipo} onChange={(e) => setTipo(e.target.value)} required>
+                {/* 🔹 Categoría */}
+                <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
                     <option value="">Categoría</option>
                     <option value="reencuentro">Reencuentro</option>
                     <option value="estudio">Estudio Bíblico</option>
                     <option value="escuela">Escuela Sabática</option>
                 </select>
 
-                <input
-                    type="text"
-                    placeholder="Nombre del miembro"
-                    value={usuario}
-                    onChange={(e) => setUsuario(e.target.value)}
-                />
+                {/* 🔹 Miembros (select en lugar de input) */}
+                <select value={usuario} onChange={(e) => setUsuario(e.target.value)}>
+                    <option value="">Seleccionar miembro</option>
+                    {usuarios.map((u) => (
+                        <option key={u.id} value={u.id}>
+                            {u.nom_usuario}
+                        </option>
+                    ))}
+                </select>
 
-                <input
-                    type="tel"
-                    placeholder="Teléfono"
-                    value={telefono}
-                    readOnly
-                />
-
+                {/* 🔹 Input oculto de fecha */}
                 <input
                     type="datetime-local"
                     ref={inputRef}
@@ -75,23 +117,26 @@ function ScheduleVisit() {
                     hidden
                 />
 
+                {/* 🔹 Botón calendario */}
                 <button type="button" onClick={abrirCalendario}>
                     <Calendar size={24} />
                 </button>
 
+                {/* 🔹 Mostrar fecha */}
                 {fecha && <p>Fecha seleccionada: {fecha}</p>}
 
+                {/* 🔹 Mensaje */}
                 <textarea
                     placeholder="Motivo de visita"
                     value={mensaje}
                     onChange={(e) => setMensaje(e.target.value)}
                 />
 
-                <button type="submit">
+                {/* 🔹 Botón enviar */}
+                <button onClick={handleSubmit}>
                     Enviar
                 </button>
-            </form>
-
+            </div>
             <BottomNav />
         </div>
     );
