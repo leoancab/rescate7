@@ -136,7 +136,6 @@ function Friendships() {
                     {loading ? "Enviando..." : "Enviar saludo"}
                 </button>
             </div>
-
             <BottomNav />
         </div>
     );

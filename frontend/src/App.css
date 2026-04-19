@@ -887,3 +887,11 @@ hr {
   justify-content: center;
   font-weight: bold;
 }
+
+.migrupo {
+  height: 100vh;
+  background-image: url('/grupofondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -6,7 +6,7 @@ export default function BottomNav() {
             <Link to="/dashboard" className="nav-item">
                 <Home size={24} />
             </Link>
-            <Link className="nav-item">
+            <Link to="/group" className="nav-item">
                 <UsersRound size={24} />
             </Link>
             <Link to="/management" className="nav-item">

@@ -18,6 +18,7 @@ import Testimony from "./pages/Testimony"
 import Friendships from "./pages/Friendships"
 import Counseling from "./pages/Counseling"
 import ChatRoom from "./pages/ChatRoom"
+import Group from "./pages/Group"
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/management/friendship" element={<Friendships />} />
         <Route path="/counseling" element={<Counseling />} />
         <Route path="/call/:roomId" element={<ChatRoom />} />
+        <Route path="/group" element={<Group />} />
       </Routes>
       <ToastContainer limit={1} />
     </BrowserRouter>
