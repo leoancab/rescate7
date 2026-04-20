@@ -39,7 +39,7 @@ function Testimony() {
 
             const token = localStorage.getItem("token");
 
-            const res = await fetch("http://localhost:3000/testimony", {
+            const res = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/testimony", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`

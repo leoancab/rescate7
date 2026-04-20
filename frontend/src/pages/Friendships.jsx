@@ -12,7 +12,7 @@ function Friendships() {
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const res = await fetch("http://localhost:3000/users/by-rol?rol=4", {
+                const res = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/users/by-rol?rol=4", {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
                     }
@@ -35,7 +35,7 @@ function Friendships() {
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:3000/friendship", {
+            const res = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/friendship", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

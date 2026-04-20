@@ -12,7 +12,7 @@ function PrayerRequest() {
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const res = await fetch("http://localhost:3000/users/by-rol?rol=4", {
+                const res = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/users/by-rol?rol=4", {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem("token")}`
                     }
@@ -36,7 +36,7 @@ function PrayerRequest() {
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:3000/prayer", {
+            const res = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/prayer", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

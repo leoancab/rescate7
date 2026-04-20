@@ -23,7 +23,7 @@ function Login() {
       return
     }
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
