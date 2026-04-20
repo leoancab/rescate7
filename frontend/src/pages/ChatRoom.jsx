@@ -14,7 +14,7 @@ export default function ChatRoom() {
     const remoteRef = useRef();
 
     useEffect(() => {
-        fetch(`http://https://fragility-culinary-charter.ngrok-free.dev/agora/token?roomId=${roomId}`)
+        fetch(`https://fragility-culinary-charter.ngrok-free.dev/agora/token?roomId=${roomId}`)
             .then(res => res.json())
             .then(data => setToken(data.token));
     }, [roomId]);

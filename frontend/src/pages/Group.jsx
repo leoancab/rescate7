@@ -35,7 +35,7 @@ function Group() {
     useEffect(() => {
         const obtenerCantidad = async () => {
             try {
-                const res = await fetch(`http://https://fragility-culinary-charter.ngrok-free.dev/groups/cant/${idGrupo}`);
+                const res = await fetch(`https://fragility-culinary-charter.ngrok-free.dev/groups/cant/${idGrupo}`);
                 const result = await res.json();
 
                 setData(result);

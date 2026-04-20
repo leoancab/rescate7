@@ -19,7 +19,7 @@ function ScheduleVisit() {
     useEffect(() => {
         const token = localStorage.getItem("token");
 
-        fetch("http://https://fragility-culinary-charter.ngrok-free.dev/users/by-rol?rol=4", {
+        fetch("https://fragility-culinary-charter.ngrok-free.dev/users/by-rol?rol=4", {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -41,7 +41,7 @@ function ScheduleVisit() {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await fetch("http://https://fragility-culinary-charter.ngrok-free.dev/visits", {
+            const res = await fetch("https://fragility-culinary-charter.ngrok-free.dev/visits", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

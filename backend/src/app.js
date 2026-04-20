@@ -20,7 +20,9 @@ const agoraRoutes = require("./routes/agoraRoutes");
 const friendshipRoutes = require("./routes/friendshipRoutes")
 const prayerRoutes = require("./routes/prayerRoutes")
 
-app.use(cors())
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
 app.use(express.json())
 app.use("/auth", authRoutes)
 app.use("/users", userRoutes)

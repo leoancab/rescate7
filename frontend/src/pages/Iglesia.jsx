@@ -22,7 +22,7 @@ function Iglesia() {
             setUser(decoded);
         }
         if (token) {
-            fetch("http://https://fragility-culinary-charter.ngrok-free.dev/users/count", {
+            fetch("https://fragility-culinary-charter.ngrok-free.dev/users/count", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

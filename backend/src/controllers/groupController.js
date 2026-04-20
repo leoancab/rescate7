@@ -185,6 +185,7 @@ exports.getCantidadMiGrupo = async (req, res) => {
             WHERE u.id_grupo = ?;
         `, [id]);
 
+        res.setHeader("Access-Control-Allow-Origin", "*");
         res.json({
             visitas: visitas.total,
             pedidos: pedidos.total,
