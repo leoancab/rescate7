@@ -24,7 +24,6 @@ function Group() {
 
     const idGrupo = user?.id_grupo;
 
-
     const [data, setData] = useState({
         visitas: 0,
         pedidos: 0,
@@ -32,10 +31,12 @@ function Group() {
         amistades: 0
     });
 
+    const [cantidadMiembros, setCantidadMiembros] = useState(0);
+
     useEffect(() => {
-        const obtenerCantidad = async () => {
+        const obtenerCantidadActividades = async () => {
             try {
-                const res = await fetch(`https://fragility-culinary-charter.ngrok-free.dev/groups/cant/${idGrupo}`);
+                const res = await fetch(`http://localhost:3000/groups/cant/${idGrupo}`);
                 const result = await res.json();
 
                 setData(result);
@@ -44,8 +45,20 @@ function Group() {
             }
         };
 
+        const obtenerCantidadMiembros = async () => {
+            try {
+                const res = await fetch(`http://localhost:3000/groups/${idGrupo}/users`);
+                const result = await res.json();
+
+                setCantidadMiembros(result.length);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
         if (idGrupo) {
-            obtenerCantidad();
+            obtenerCantidadActividades();
+            obtenerCantidadMiembros();
         }
     }, [idGrupo]);
 
@@ -93,7 +106,7 @@ function Group() {
                         Usuarios Registrados
                     </div>
                     <div style={{ height: "50%", aspectRatio: "1/1", color: "#184281", fontWeight: "bolder", fontSize: "200%", backgroundColor: "#E3C318", borderRadius: "50%", alignItems: "center", justifyContent: "center", display: "flex", alignSelf: "center" }}>
-                        0
+                        {cantidadMiembros}
                     </div>
                 </div>
             </div>

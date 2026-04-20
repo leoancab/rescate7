@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom"
-import "../App.css"
 function Home() {
   return (
     <div className="home">
