@@ -1,0 +1,9 @@
+{
+  "appId": "com.rescate7.app",
+  "appName": "Rescate7",
+  "webDir": "build",
+  "server": {
+    "url": "https://fragility-culinary-charter.ngrok-free.dev",
+    "cleartext": true
+  }
+}
