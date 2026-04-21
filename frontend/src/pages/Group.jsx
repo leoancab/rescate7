@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 function Group() {
 
     const [user, setUser] = useState(null);
+    const [liderGrupo, setLiderGrupo] = useState("");
 
     function parseJwt(token) {
         try {
@@ -31,7 +32,7 @@ function Group() {
         amistades: 0
     });
 
-    const [cantidadMiembros, setCantidadMiembros] = useState(0);
+    const [infoGrupo, setInfoGrupo] = useState(null);
 
     useEffect(() => {
         const obtenerCantidadActividades = async () => {
@@ -45,12 +46,22 @@ function Group() {
             }
         };
 
-        const obtenerCantidadMiembros = async () => {
+        const obtenerDatosGrupo = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/groups/${idGrupo}/users`);
+                const res = await fetch(`http://localhost:3000/groups/${idGrupo}`);
+                const result = await res.json();
+                setInfoGrupo(result);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
+
+        const obtenerLiderGrupo = async () => {
+            try {
+                const res = await fetch(`http://localhost:3000/users/${idGrupo}/lider`);
                 const result = await res.json();
 
-                setCantidadMiembros(result.length);
+                setLiderGrupo(result.lider);
             } catch (error) {
                 console.error("Error:", error);
             }
@@ -58,7 +69,8 @@ function Group() {
 
         if (idGrupo) {
             obtenerCantidadActividades();
-            obtenerCantidadMiembros();
+            obtenerDatosGrupo();
+            obtenerLiderGrupo();
         }
     }, [idGrupo]);
 
@@ -78,10 +90,12 @@ function Group() {
                 </div>
             </div>
             <div style={{ height: "30vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ backgroundColor: "#072A60", width: "75%", height: "75%", borderRadius: "20px", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                    <span>Grupo</span>
+                <div style={{ fontSize: "150%", fontWeight: "bolder", backgroundColor: "#072A60", width: "75%", height: "75%", borderRadius: "20px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                    <img style={{ height: "50px", width: "50px" }} src="logogrupo.png" />
+                    <span>Grupo {infoGrupo?.nom_grupo}</span>
+                    <br />
                     <span>Lider de Grupo</span>
-                    <span>NOMBRE</span>
+                    <span>{liderGrupo}</span>
                 </div>
             </div>
             <div style={{ height: "20vh", display: "flex", justifyContent: "center", gap: "2.5%" }}>
@@ -106,7 +120,7 @@ function Group() {
                         Usuarios Registrados
                     </div>
                     <div style={{ height: "50%", aspectRatio: "1/1", color: "#184281", fontWeight: "bolder", fontSize: "200%", backgroundColor: "#E3C318", borderRadius: "50%", alignItems: "center", justifyContent: "center", display: "flex", alignSelf: "center" }}>
-                        {cantidadMiembros}
+                        {infoGrupo?.cantidad_miembros}
                     </div>
                 </div>
             </div>

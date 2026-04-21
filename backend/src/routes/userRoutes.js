@@ -12,5 +12,6 @@ router.put("/:id", authMiddleware, userController.updateUser)
 router.delete("/:id", authMiddleware, userController.deleteUser)
 router.put("/:id/group", userController.assignGroup);
 router.put("/:id/remove-group", userController.removeGroup);
+router.get("/:id_grupo/lider", userController.getLiderGrupo)
 
 module.exports = router

@@ -213,3 +213,32 @@ exports.getUsuariosByRol = async (req, res) => {
     res.status(500).json({ message: "Error del servidor" });
   }
 };
+
+exports.getLiderGrupo = async (req, res) => {
+  try {
+    const { id_grupo } = req.params;
+
+    if (!id_grupo) {
+      return res.status(400).json({ message: "id_grupo requerido" });
+    }
+
+    const query = `
+      SELECT nom_usuario
+      FROM usuarios
+      WHERE id_tipo_usuario = 3 AND id_grupo = ?
+      LIMIT 1;
+    `;
+
+    const [rows] = await pool.query(query, [id_grupo]);
+
+    if (rows.length === 0) {
+      return res.json({ lider: null });
+    }
+
+    res.json({ lider: rows[0].nom_usuario });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+};
