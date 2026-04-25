@@ -47,8 +47,6 @@ export default function ChatRoom() {
                 setHasVideo(false);
             }
 
-            await client.publish(localTracks);
-
             // 👂 escuchar usuarios remotos
             client.on("user-published", async (user, mediaType) => {
                 await client.subscribe(user, mediaType);
@@ -58,6 +56,22 @@ export default function ChatRoom() {
                 }
 
                 if (mediaType === "audio") {
+                    user.audioTrack.play();
+                }
+            });
+
+            // 👇 luego publicas
+            await client.publish(localTracks);
+
+            // 👇 luego manejas los que ya estaban
+            client.remoteUsers.forEach(async (user) => {
+                if (user.hasVideo) {
+                    await client.subscribe(user, "video");
+                    user.videoTrack.play(remoteRef.current);
+                }
+
+                if (user.hasAudio) {
+                    await client.subscribe(user, "audio");
                     user.audioTrack.play();
                 }
             });
@@ -76,6 +90,7 @@ export default function ChatRoom() {
     return (
         <div style={{ gap: "1vh", display: "flex", flexDirection: "column" }}>
             <BackButton />
+            Comparte este ID: {roomId}
             <div
                 ref={hasVideo ? localRef : null}
                 style={{
