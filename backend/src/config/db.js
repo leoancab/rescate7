@@ -11,11 +11,9 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
 
-  // 🔥 importante para evitar errores con fechas
   timezone: "Z"
 });
 
-// 🔍 Verificar conexión al iniciar
 (async () => {
   try {
     const connection = await pool.getConnection();

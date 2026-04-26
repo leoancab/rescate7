@@ -19,6 +19,7 @@ import Friendships from "./pages/Friendships"
 import Counseling from "./pages/Counseling"
 import ChatRoom from "./pages/ChatRoom"
 import Group from "./pages/Group"
+import ViewBoard from "./pages/ViewBoard"
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/counseling" element={<Counseling />} />
         <Route path="/call/:roomId" element={<ChatRoom />} />
         <Route path="/group" element={<Group />} />
+        <Route path="/viewboard" element={<ViewBoard />} />
       </Routes>
       <ToastContainer limit={1} />
     </BrowserRouter>

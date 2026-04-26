@@ -33,10 +33,21 @@ function Home() {
       </div>
 
       <div className="contenedorlinks">
-        <img className="links" src="/youtube.png" />
-        <img className="links" src="/facebook.png" />
-        <img className="links" src="/instagram.png" />
-        <img className="links" src="/tiktok.png" />
+        <a href="https://www.youtube.com/@Rescate7.Ecuador" target="_blank" rel="noopener noreferrer">
+          <img className="links" src="/youtube.png" />
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=61575471720675&locale=es_LA" target="_blank" rel="noopener noreferrer">
+          <img className="links" src="/facebook.png" />
+        </a>
+
+        <a href="https://www.instagram.com/rescate7.social/" target="_blank" rel="noopener noreferrer">
+          <img className="links" src="/instagram.png" />
+        </a>
+
+        <a href="https://www.tiktok.com/@rescate7.social" target="_blank" rel="noopener noreferrer">
+          <img className="links" src="/tiktok.png" />
+        </a>
       </div>
 
       <div className="homefoot">

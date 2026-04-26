@@ -1,7 +1,7 @@
 import BottomNav from "./BottomNav";
 import { Webcam, SquarePen, CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function parseJwt(token) {
   try {
@@ -106,9 +106,11 @@ function Dashboard() {
           />
         </div>
         <div className="opchead">
-          <div className="item">
-            <Webcam onClick={goToVideoCall} size={48} />
-            Visitas
+          <div>
+            <Link to="/viewboard" className="item">
+              <Webcam /*onClick={goToVideoCall}*/ size={48} />
+              Visitas
+            </Link>
           </div>
           <div className="item">
             <SquarePen size={48} />
