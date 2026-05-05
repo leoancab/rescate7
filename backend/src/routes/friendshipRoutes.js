@@ -4,7 +4,8 @@ const router = express.Router();
 const {
     createAmistad,
     getMisAmistadesEnviadas,
-    getMisAmistadesRecibidas
+    getMisAmistadesRecibidas,
+    getAllAmistades
 } = require("../controllers/friendshipController");
 
 // ⚠️ Middleware de autenticación (debes tenerlo)
@@ -18,5 +19,7 @@ router.get("/sent", authMiddleware, getMisAmistadesEnviadas);
 
 // Obtener recibidos
 router.get("/received", authMiddleware, getMisAmistadesRecibidas);
+
+router.get("/", authMiddleware, getAllAmistades);
 
 module.exports = router;

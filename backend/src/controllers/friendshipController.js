@@ -93,9 +93,21 @@ const getMisAmistadesRecibidas = async (req, res) => {
     }
 };
 
+const getAllAmistades = async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT * FROM friendships");
+
+        res.json(rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener amistades" });
+    }
+};
+
 
 module.exports = {
     createAmistad,
     getMisAmistadesEnviadas,
-    getMisAmistadesRecibidas
+    getMisAmistadesRecibidas,
+    getAllAmistades
 };
