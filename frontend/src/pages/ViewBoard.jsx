@@ -7,24 +7,40 @@ function ViewBoard() {
     const [alcance, setAlcance] = useState("");
     const [amistades, setAmistades] = useState([]);
 
-    useEffect(() => {
-        const obtenerAmistades = async () => {
-            try {
-                const res = await fetch("http://localhost:3000/friendship", {
-                    headers: {
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    }
-                });
-                const data = await res.json();
-                setAmistades(data);
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
+    const obtenerAmistades = async () => {
+        try {
+            const token = localStorage.getItem("token");
 
+            if (!token) {
+                console.error("No hay token disponible");
+                return;
+            }
+
+            const res = await fetch("http://localhost:3000/friendship", {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) {
+                throw new Error("Error en la respuesta del servidor");
+            }
+
+            const data = await res.json();
+            setAmistades(data);
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+    useEffect(() => {
         obtenerAmistades();
-        console.log(amistades);
     }, []);
+
+    useEffect(() => {
+        console.log("Amistades actualizadas:", amistades);
+    }, [amistades]);
 
     return (
         <div className="dashboardfondo">
@@ -36,30 +52,50 @@ function ViewBoard() {
                         className="logoLogIn"
                     />
                 </div>
-                <div className="opchead">
-                    <select className="selectBox" onChange={(e) => setTipo(e.target.value)}>
-                        <option></option>
-                        <option>Visitas Misioneras</option>
-                        <option>Pedidos de Oración</option>
-                        <option>Testimonios</option>
-                        <option>Relacionamiento</option>
+
+                <div className="opcfiltros">
+                    <select
+                        className="selectBox"
+                        onChange={(e) => setTipo(e.target.value)}
+                    >
+                        <option value=""></option>
+                        <option value="visitas">Visitas Misioneras</option>
+                        <option value="oracion">Pedidos de Oración</option>
+                        <option value="testimonios">Testimonios</option>
+                        <option value="relacionamiento">Relacionamiento</option>
                     </select>
-                    <select className="selectBox" onChange={(e) => setAlcance(e.target.value)}>
-                        <option></option>
-                        <option>Mi Gestión</option>
-                        <option>Mi Grupo</option>
-                        <option>Mi Iglesia</option>
+
+                    <select
+                        className="selectBox"
+                        onChange={(e) => setAlcance(e.target.value)}
+                    >
+                        <option value=""></option>
+                        <option value="gestion">Mi Gestión</option>
+                        <option value="grupo">Mi Grupo</option>
+                        <option value="iglesia">Mi Iglesia</option>
                     </select>
                 </div>
             </div>
+
             <div style={{ height: "80vh" }}>
-                <div style={{ backgroundColor: "white", height: "100%", borderRadius: "20px" }}>
+                <div style={{ backgroundColor: "white", height: "100%", borderRadius: "20px", padding: "10px" }}>
+
+                    {amistades.length === 0 ? (
+                        <p>No hay amistades disponibles</p>
+                    ) : (
+                        amistades.map((amigo, index) => (
+                            <div key={index} style={{ color: "black" }}>
+                                <p>{amigo.mensaje || "Sin nombre"}</p>
+                            </div>
+                        ))
+                    )}
 
                 </div>
             </div>
+
             <BottomNav />
         </div>
-    )
+    );
 }
 
-export default ViewBoard
+export default ViewBoard;
