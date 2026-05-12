@@ -1,11 +1,18 @@
 import BottomNav from "./BottomNav";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ViewBoard() {
 
     const [tipo, setTipo] = useState("");
     const [alcance, setAlcance] = useState("");
     const [amistades, setAmistades] = useState([]);
+    const navigate = useNavigate();
+
+    const goToVideoCall = () => {
+        const roomId = Math.random().toString(36).substring(2, 8);
+        navigate(`/call/${roomId}`);
+    };
 
     const obtenerAmistades = async () => {
         try {
@@ -84,7 +91,7 @@ function ViewBoard() {
                         <p>No hay amistades disponibles</p>
                     ) : (
                         amistades.map((amigo, index) => (
-                            <div key={index} style={{ color: "black" }}>
+                            <div key={index} style={{ color: "black" }} onClick={goToVideoCall}>
                                 <p>{amigo.mensaje || "Sin nombre"}</p>
                             </div>
                         ))
