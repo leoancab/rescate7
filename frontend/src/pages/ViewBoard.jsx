@@ -14,6 +14,26 @@ function ViewBoard() {
         navigate(`/call/${roomId}`);
     };
 
+    const tiempoRelativo = (fechaStr) => {
+        const fecha = new Date(fechaStr);
+        const ahora = new Date();
+
+        const diffMs = ahora - fecha; // diferencia en milisegundos
+
+        const segundos = Math.floor(diffMs / 1000);
+        const minutos = Math.floor(segundos / 60);
+        const horas = Math.floor(minutos / 60);
+        const dias = Math.floor(horas / 24);
+
+        if (segundos < 60) return "hace unos segundos";
+        if (minutos < 60) return `hace ${minutos} minuto${minutos !== 1 ? "s" : ""}`;
+        if (horas < 24) return `hace ${horas} hora${horas !== 1 ? "s" : ""}`;
+        if (dias < 7) return `hace ${dias} día${dias !== 1 ? "s" : ""}`;
+
+        // Si ya es más antiguo
+        return fecha.toLocaleDateString("es-EC");
+    };
+
     const obtenerAmistades = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -92,8 +112,13 @@ function ViewBoard() {
                     ) : (
                         amistades.map((amigo, index) => (
                             <div key={index} style={{ color: "black" }} onClick={goToVideoCall}>
-                                <p>{amigo.mensaje || "Sin nombre"}</p>
+                                <p>De: liderGrupo
+                                    <br />
+                                    Mensaje: {amigo.mensaje}<br />
+                                    Fecha: {tiempoRelativo(amigo.fecha_envio)}</p>
+                                <hr style={{ border: "1px solid black" }} />
                             </div>
+
                         ))
                     )}
 
