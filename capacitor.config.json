@@ -1,9 +1,0 @@
-{
-  "appId": "com.rescate7.app",
-  "appName": "Rescate7",
-  "webDir": "build",
-  "server": {
-    "url": "http://localhost:3000",
-    "cleartext": true
-  }
-}
