@@ -1,6 +1,7 @@
 import BottomNav from "./BottomNav";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Video } from "lucide-react";
 
 function ViewBoard() {
 
